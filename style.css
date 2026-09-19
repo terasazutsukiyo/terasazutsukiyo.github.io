@@ -94,3 +94,96 @@ p {
     border-top: 1px solid #e0d8ce;
     padding-top: 20px;
 }
+/* --- 搜索框样式 --- */
+.search-box {
+    margin: 30px 0 20px 0;
+    text-align: center;
+}
+.search-box input {
+    width: 100%;
+    max-width: 450px;
+    padding: 12px 20px;
+    font-size: 1em;
+    font-family: inherit;
+    color: #3a3a3a;
+    background-color: #ffffff;
+    border: 1px solid #d1c3b4;
+    border-radius: 30px; /* 圆角胶囊型搜索框 */
+    outline: none;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), 0 2px 8px rgba(107, 76, 58, 0.05);
+    transition: all 0.3s ease;
+}
+.search-box input:focus {
+    border-color: #6b4c3a;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), 0 4px 12px rgba(107, 76, 58, 0.15);
+}
+
+/* --- 合集标签样式 --- */
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.filter-tag {
+    padding: 6px 16px;
+    font-size: 0.9em;
+    color: #6b4c3a;
+    background-color: transparent;
+    border: 1px solid #d1c3b4;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+.filter-tag:hover {
+    background-color: #f0ebe4;
+}
+.filter-tag.active {
+    background-color: #6b4c3a;
+    color: #f9f7f2;
+    border-color: #6b4c3a;
+}
+
+/* --- 作品列表的动态过渡 --- */
+.work-list {
+    list-style: none;
+    margin-top: 20px;
+}
+.work-item {
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #ddd5c9;
+    padding-bottom: 15px;
+    /* 加入淡入动画 */
+    animation: fadeIn 0.4s ease forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 元数据与小标签样式 --- */
+.work-item .meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85em;
+    color: #8b8b8b;
+    margin-top: 8px;
+}
+.badge {
+    padding: 2px 8px;
+    background-color: #ede8e1;
+    color: #6b4c3a;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.status-done {
+    background-color: #e6f4ea;
+    color: #1e8e3e;
+}
+.status-ongoing {
+    background-color: #fef7e0;
+    color: #b06000;
+}
