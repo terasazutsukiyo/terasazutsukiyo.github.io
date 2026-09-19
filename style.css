@@ -263,3 +263,19 @@ body {
     width: 0%;
     transition: width 0.1s ease;
 }
+.seal {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #8b3a3a; /* 暗红色印章 */
+    border-radius: 4px;
+    color: #8b3a3a;
+    font-size: 1.4em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    transform: rotate(-10deg); /* 微微倾斜，更像印章 */
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    opacity: 0.85;
+}
