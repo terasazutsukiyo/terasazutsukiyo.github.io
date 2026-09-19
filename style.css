@@ -56,15 +56,22 @@ p {
     border-bottom: 1px dashed #ddd5c9; 
     padding-bottom: 15px; 
 }
-.work-list a { 
-    color: #2c2c2c; 
-    text-decoration: none; 
-    font-size: 1.1em; 
-    transition: color 0.3s ease;
+.work-list li {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px; /* 圆角 */
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    /* 移除之前的 border-bottom 虚线，改用卡片风格 */
+    border-bottom: 1px solid var(--border-color); 
 }
-.work-list a:hover { 
-    color: #6b4c3a; /* 悬停时变棕色 */
-    text-decoration: underline; 
+
+.work-list li:hover {
+    transform: translateY(-4px); /* 向上浮动 */
+    box-shadow: 0 10px 20px rgba(107, 76, 58, 0.1); /* 加深阴影 */
+    border-color: var(--accent-color); /* 边框变色 */
 }
 .work-list .meta { 
     font-size: 0.85em; 
