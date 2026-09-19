@@ -7,27 +7,36 @@
 </head>
 <body>
 
-    <!-- 你的头像 -->
+    <!-- 头像与标题 -->
     <img src="avatar.jpg" alt="我的头像" class="profile-img">
-    
-    <h1>TerasazuTsukiyo</h1>
-    <p style="text-align: center; color: #8b8b8b; text-indent: 0; margin-bottom: 40px; font-size: 0.95em;">欢迎来到我的同人作品集。</p>
+    <h1>执笔于暗夜</h1>
+    <p style="text-align: center; color: #8b8b8b; text-indent: 0; margin-bottom: 30px; font-size: 0.95em;">欢迎来到我的同人作品集。</p>
 
-    <h2>📖 作品目录</h2>
-    <ul class="work-list">
-        <li>
-            <a href="works/work1.html">命运的交错</a>
-            <div class="meta">CP：A x B | 原著向 | 更新：2026-09-19</div>
-        </li>
-        <li>
-            <a href="works/work2.html">长夜将明</a>
-            <div class="meta">CP：C x D | AU设定 | 更新：2026-09-15</div>
-        </li>
+    <!-- 🔍 搜索框 -->
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="搜索作品名称、CP或设定...">
+    </div>
+
+    <!-- 🏷️ 合集分类（标签） -->
+    <div class="filter-group">
+        <span class="filter-tag active" data-filter="全部">全部</span>
+        <span class="filter-tag" data-filter="原著向">原著向</span>
+        <span class="filter-tag" data-filter="AU设定">AU设定</span>
+        <span class="filter-tag" data-filter="已完结">已完结</span>
+        <span class="filter-tag" data-filter="连载中">连载中</span>
+    </div>
+
+    <!-- 📖 作品列表（留空，由 JS 自动填充） -->
+    <ul class="work-list" id="works-list">
+        <!-- 内容会由 script.js 自动生成 -->
     </ul>
 
+    <!-- 底部声明 -->
     <div class="disclaimer">
         本网站所有作品均为二次创作，仅供个人欣赏交流，与版权方无关。
     </div>
 
+    <!-- 引入 JS -->
+    <script src="script.js"></script>
 </body>
 </html>
