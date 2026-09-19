@@ -138,3 +138,26 @@ if (typewriterElement) {
     // 稍微延迟一点启动
     setTimeout(typeWriter, 500); 
 }
+function unlockArticle() {
+    const correctPassword = "你的秘密密码"; // 在这里设置你的密码
+    const inputPassword = document.getElementById('password-input').value;
+    
+    if (inputPassword === correctPassword) {
+        document.getElementById('protected-content').style.display = 'block'; // 显示文章
+        document.getElementById('lock-screen').style.display = 'none'; // 隐藏锁
+        // 可选：记住密码，刷新页面后不用重新输入
+        sessionStorage.setItem('unlocked_work1', 'true'); 
+    } else {
+        document.getElementById('error-msg').style.display = 'block';
+    }
+}
+
+// 页面加载时检查是否已经解锁过（可选）
+document.addEventListener('DOMContentLoaded', () => {
+    if (sessionStorage.getItem('unlocked_work1') === 'true') {
+        const protectedContent = document.getElementById('protected-content');
+        const lockScreen = document.getElementById('lock-screen');
+        if (protectedContent) protectedContent.style.display = 'block';
+        if (lockScreen) lockScreen.style.display = 'none';
+    }
+});
