@@ -1,4 +1,44 @@
 // ==========================================
+// 🔒 全站密码门禁系统
+// ==========================================
+const SITE_PASSWORD = "3528"; // 👈 在这里修改成你想要的密码！
+
+// 1. 首页密码验证逻辑
+function checkSitePassword() {
+    const input = document.getElementById('site-password-input');
+    if (!input) return;
+    
+    if (input.value === SITE_PASSWORD) {
+        // 密码正确，记录状态
+        sessionStorage.setItem('site_authenticated', 'true');
+        // 显示真正的内容
+        document.getElementById('lock-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+        // 初始化首页（如果之前没渲染过）
+        renderWorks(worksData);
+    } else {
+        document.getElementById('error-msg').style.display = 'block';
+    }
+}
+
+// 2. 页面加载时自动检查是否已解锁（防止刷新页面后又要重新输入）
+document.addEventListener('DOMContentLoaded', () => {
+    const isAuthenticated = sessionStorage.getItem('site_authenticated') === 'true';
+    const lockScreen = document.getElementById('lock-screen');
+    const mainContent = document.getElementById('main-content');
+    
+    if (lockScreen && mainContent) {
+        if (isAuthenticated) {
+            lockScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+            renderWorks(worksData);
+        } else {
+            lockScreen.style.display = 'block';
+            mainContent.style.display = 'none';
+        }
+    }
+});
+// ==========================================
 // 作品数据库：以后加新文章，只需在下面添加数据
 // ==========================================
 const worksData = [
