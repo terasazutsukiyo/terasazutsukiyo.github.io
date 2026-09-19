@@ -1,29 +1,99 @@
-/* 基础重置 */
+/* 基础重置与全局设定 */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; /* 优先使用衬线体，更适合文学阅读 */
-    background-color: #faf9f6; /* 柔和的米白色背景，护眼 */
-    color: #333333; /* 深灰色文字，比纯黑更柔和 */
-    line-height: 1.8; /* 舒适的阅读行高 */
+    font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+    background-color: #151515; /* 深灰底色，带有夜之氛围 */
+    /* 如果你想加一点纹理，可以使用下面的渐变或图片，不需要可以删掉 */
+    background-image: radial-gradient(circle at center, #1f1d1a 0%, #0d0d0d 100%);
+    color: #d1ccc5; /* 柔和的米灰色文字 */
+    line-height: 1.9;
     padding: 40px 20px;
-    max-width: 720px; /* 限制阅读宽度，一行字太多会累 */
+    max-width: 720px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
-h1 { font-size: 1.8em; text-align: center; margin-bottom: 10px; color: #1a1a1a; }
-h2 { font-size: 1.4em; margin: 30px 0 15px; color: #2c3e50; border-left: 4px solid #0366d6; padding-left: 10px; }
-p { margin-bottom: 1.2em; text-indent: 2em; } /* 首行缩进两字符 */
+/* 顶部头像样式 */
+.profile-img {
+    display: block;
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%; /* 圆形头像 */
+    border: 3px solid #4a3b31; /* 古铜色边框 */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    margin: 0 auto 20px auto;
+    filter: sepia(20%) contrast(1.1); /* 微微调色，更贴合图片色调 */
+}
 
-/* 作品目录列表样式 */
+/* 标题样式 */
+h1 { 
+    font-size: 1.8em; 
+    text-align: center; 
+    margin-bottom: 10px; 
+    color: #f0ede8; 
+    letter-spacing: 2px;
+}
+h2 { 
+    font-size: 1.3em; 
+    margin: 40px 0 20px; 
+    color: #c9a47e; /* 复古黄铜色 */
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+/* 正文段落 */
+p { 
+    margin-bottom: 1.4em; 
+    text-indent: 2em; 
+    font-size: 1.05em;
+}
+
+/* 首页目录链接样式 */
 .work-list { list-style: none; margin-top: 20px; }
-.work-list li { margin-bottom: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 15px; }
-.work-list a { color: #0366d6; text-decoration: none; font-weight: bold; font-size: 1.1em; }
-.work-list a:hover { text-decoration: underline; }
-.work-list .meta { font-size: 0.85em; color: #888; margin-top: 5px; }
+.work-list li { 
+    margin-bottom: 20px; 
+    border-bottom: 1px dashed #3a352f; 
+    padding-bottom: 15px; 
+}
+.work-list a { 
+    color: #e6e1d8; 
+    text-decoration: none; 
+    font-size: 1.1em; 
+    transition: all 0.3s ease;
+}
+.work-list a:hover { 
+    color: #c9a47e; /* 悬停变金色 */
+    text-decoration: none; 
+    padding-left: 5px;
+}
+.work-list .meta { 
+    font-size: 0.85em; 
+    color: #7a756e; 
+    margin-top: 8px; 
+}
 
-/* 单篇作品阅读页样式 */
-.story-title { text-align: center; margin-bottom: 30px; }
+/* 作品阅读页样式 */
+.story-title { text-align: center; margin-bottom: 30px; color: #f0ede8; }
 .story-content { font-size: 1.05em; }
-.story-content p { text-indent: 2em; margin-bottom: 1.2em; }
-.back-link { display: block; text-align: center; margin-top: 40px; color: #888; text-decoration: none; font-size: 0.9em; }
+.back-link { 
+    display: block; 
+    text-align: center; 
+    margin-top: 50px; 
+    color: #7a756e; 
+    text-decoration: none; 
+    font-size: 0.9em; 
+}
+.back-link:hover { color: #c9a47e; }
+
+/* 引用或免责声明 */
+.disclaimer {
+    font-size: 0.8em;
+    color: #5c5853;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid #2a2724;
+    padding-top: 20px;
+}
