@@ -121,3 +121,20 @@ window.onscroll = function() {
         progressBar.style.width = scrolled + "%";
     }
 };
+// 打字机效果
+const text = "欢迎来到我的同人作品集，愿故事在这里永不完结。";
+let i = 0;
+const speed = 80; // 打字速度，数字越小越快
+const typewriterElement = document.getElementById("typewriter");
+
+function typeWriter() {
+    if (typewriterElement && i < text.length) {
+        typewriterElement.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+    }
+}
+if (typewriterElement) {
+    // 稍微延迟一点启动
+    setTimeout(typeWriter, 500); 
+}
