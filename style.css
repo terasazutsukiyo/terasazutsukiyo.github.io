@@ -3,7 +3,11 @@
 
 body {
     font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
-    background-color: #f9f7f2; /* 羊皮纸底色，明亮且柔和 */
+    body {
+    /* 保留原来的底色，加上一个从顶部中央散发的暖光 */
+    background: radial-gradient(circle at 50% 0%, #ffffff 0%, #f9f7f2 60%, #ede6dc 100%);
+    /* ...其他属性保持不变... */
+}
     color: #3a3a3a; /* 深灰色文字，确保阅读清晰 */
     line-height: 1.9; /* 舒适的长文阅读行高 */
     padding: 40px 20px;
