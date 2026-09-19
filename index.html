@@ -2,45 +2,69 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的同人作品集</title>
-    <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="style.css">
+    <!-- 防止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
 </head>
-    <button id="theme-toggle" class="theme-toggle" title="切换阅读模式">🌙</button>
-<div class="progress-container">
-    <div class="progress-bar" id="myBar"></div>
-</div>
-    <body>
+<body>
 
-    <!-- 头像与标题 -->
-    <img src="avatar.jpg" alt="我的头像" class="profile-img">
-    <h1>TerasazuTsukiyo</h1>
-   <p style="text-align: center; text-indent: 0; margin-bottom: 40px; font-size: 0.95em; color: #8b8b8b;">
-    <span id="typewriter"></span>
-</p>
-
-    <!-- 🔍 搜索框 -->
-    <div class="search-box">
-        <input type="text" id="search-input" placeholder="搜索作品名称、CP或设定...">
+    <!-- ========================================== -->
+    <!-- 🔒 第一层：密码锁界面（默认显示） -->
+    <!-- ========================================== -->
+    <div id="lock-screen" style="text-align: center; margin-top: 100px;">
+        <!-- 用一张模糊的头像做背景，增加氛围感 -->
+        <img src="avatar.jpg" alt="我的头像" class="profile-img" style="filter: blur(4px); opacity: 0.6;">
+        <h2 style="color: #6b4c3a; margin-top: 20px;">🔒 这是一个私密书房</h2>
+        <p style="color: #8b8b8b; margin-bottom: 20px;">请输入访问密码：</p>
+        
+        <input type="password" id="site-password-input" placeholder="输入密码..." 
+               style="padding: 12px 20px; width: 250px; border: 1px solid #d1c3b4; border-radius: 30px; outline: none; text-align: center;">
+        <br>
+        <button onclick="checkSitePassword()" 
+                style="margin-top: 20px; padding: 10px 30px; background-color: #6b4c3a; color: white; border: none; border-radius: 30px; cursor: pointer; font-family: inherit; font-size: 1em;">
+            进入书房
+        </button>
+        <p id="error-msg" style="color: #8b3a3a; display: none; margin-top: 15px;">密码错误，请重新输入。</p>
     </div>
 
-    <!-- 🏷️ 合集分类（标签） -->
-    <div class="filter-group">
-        <span class="filter-tag active" data-filter="全部">全部</span>
-        <span class="filter-tag" data-filter="原著向">原著向</span>
-        <span class="filter-tag" data-filter="AU设定">AU设定</span>
-        <span class="filter-tag" data-filter="已完结">已完结</span>
-        <span class="filter-tag" data-filter="连载中">连载中</span>
-    </div>
+    <!-- ========================================== -->
+    <!-- 📖 第二层：真正的首页内容（默认隐藏，输密码后显示） -->
+    <!-- ========================================== -->
+    <div id="main-content" style="display: none;">
+        
+        <!-- 头像与标题 -->
+        <img src="avatar.jpg" alt="我的头像" class="profile-img">
+        <h1>执笔于暗夜</h1>
+        <p style="text-align: center; color: #8b8b8b; text-indent: 0; margin-bottom: 30px; font-size: 0.95em;">
+            <span id="typewriter"></span>
+        </p>
 
-    <!-- 📖 作品列表（留空，由 JS 自动填充） -->
-    <ul class="work-list" id="works-list">
-        <!-- 内容会由 script.js 自动生成 -->
-    </ul>
+        <!-- 🔍 搜索框 -->
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="搜索作品名称、CP或设定...">
+        </div>
 
-    <!-- 底部声明 -->
-    <div class="disclaimer">
-        本网站所有作品均为二次创作，仅供个人欣赏交流，与版权方无关。
+        <!-- 🏷️ 合集分类（标签） -->
+        <div class="filter-group">
+            <span class="filter-tag active" data-filter="全部">全部</span>
+            <span class="filter-tag" data-filter="原著向">原著向</span>
+            <span class="filter-tag" data-filter="AU设定">AU设定</span>
+            <span class="filter-tag" data-filter="已完结">已完结</span>
+            <span class="filter-tag" data-filter="连载中">连载中</span>
+        </div>
+
+        <!-- 📖 作品列表（由 JS 自动填充） -->
+        <ul class="work-list" id="works-list">
+            <!-- 内容会自动生成 -->
+        </ul>
+
+        <!-- 底部声明 -->
+        <div class="disclaimer">
+            本网站所有作品均为二次创作，仅供个人欣赏交流，与版权方无关。
+        </div>
+
     </div>
 
     <!-- 引入 JS -->
