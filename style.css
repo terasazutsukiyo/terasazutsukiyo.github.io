@@ -1,0 +1,29 @@
+/* 基础重置 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; /* 优先使用衬线体，更适合文学阅读 */
+    background-color: #faf9f6; /* 柔和的米白色背景，护眼 */
+    color: #333333; /* 深灰色文字，比纯黑更柔和 */
+    line-height: 1.8; /* 舒适的阅读行高 */
+    padding: 40px 20px;
+    max-width: 720px; /* 限制阅读宽度，一行字太多会累 */
+    margin: 0 auto;
+}
+
+h1 { font-size: 1.8em; text-align: center; margin-bottom: 10px; color: #1a1a1a; }
+h2 { font-size: 1.4em; margin: 30px 0 15px; color: #2c3e50; border-left: 4px solid #0366d6; padding-left: 10px; }
+p { margin-bottom: 1.2em; text-indent: 2em; } /* 首行缩进两字符 */
+
+/* 作品目录列表样式 */
+.work-list { list-style: none; margin-top: 20px; }
+.work-list li { margin-bottom: 15px; border-bottom: 1px dashed #ddd; padding-bottom: 15px; }
+.work-list a { color: #0366d6; text-decoration: none; font-weight: bold; font-size: 1.1em; }
+.work-list a:hover { text-decoration: underline; }
+.work-list .meta { font-size: 0.85em; color: #888; margin-top: 5px; }
+
+/* 单篇作品阅读页样式 */
+.story-title { text-align: center; margin-bottom: 30px; }
+.story-content { font-size: 1.05em; }
+.story-content p { text-indent: 2em; margin-bottom: 1.2em; }
+.back-link { display: block; text-align: center; margin-top: 40px; color: #888; text-decoration: none; font-size: 0.9em; }
