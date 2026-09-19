@@ -230,3 +230,14 @@ body {
     transform: scale(1.1);
     border-color: var(--accent-color);
 }
+/* 文章第一段首字下沉 */
+.story-content p:first-of-type::first-letter {
+    float: left;
+    font-size: 3.5em;
+    line-height: 1;
+    padding-right: 8px;
+    padding-top: 4px;
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    color: var(--accent-color); /* 使用你的主题棕色 */
+    font-weight: bold;
+}
