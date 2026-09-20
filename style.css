@@ -123,3 +123,15 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
 .story-content {
     font-size: 1.05em;
 }
+/* 底部免责声明（页脚风格） */
+.disclaimer {
+    font-size: 12px;         /* 字号调小（视手机而定，一般在11-13px之间） */
+    color: #b0a8a0;          /* 颜色调成很淡的灰褐色，降低存在感 */
+    text-align: center;      /* 居中 */
+    margin-top: 60px;        /* 距离上面的作品卡片拉开距离 */
+    padding-top: 20px;       /* 分割线与文字之间留点空隙 */
+    border-top: 1px solid #ede6dc; /* 极淡的分割线 */
+    line-height: 1.5;        /* 行距紧凑一点，不像正文那样宽 */
+    letter-spacing: 0.05em;  /* 稍微加点字间距，显得精致 */
+    opacity: 0.8;            /* 稍微变透明一点，不要那么显眼 */
+}
