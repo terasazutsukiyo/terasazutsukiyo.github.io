@@ -26,14 +26,6 @@
         作者：你的笔名 | 字数：3000+ | 状态：已完结
     </div>
 
-    <!-- 字体调节按钮 -->
-    <div class="font-controls">
-        <span>字体大小：</span>
-        <button onclick="changeFontSize('small')" id="btn-small">小</button>
-        <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
-        <button onclick="changeFontSize('large')" id="btn-large">大</button>
-    </div>
-
     <!-- 正文区域 -->
     <div class="story-content">
         <p>这里是正文的第一段。直接写你的文字，不要带上多余的标签。</p>
@@ -44,6 +36,16 @@
     <a href="../index.html" class="back-link">← 返回作品目录</a>
 
     <!-- 引入 JS -->
-    <script src="../script.js"></script>
+    <script src="../script.js"></script
+    <!-- 悬浮字体调节工具 -->
+<div class="floating-font-tool">
+    <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
+    <div id="font-panel" class="font-panel" style="display: none;">
+        <span>字号：</span>
+        <button onclick="changeFontSize('small')" id="btn-small">小</button>
+        <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
+        <button onclick="changeFontSize('large')" id="btn-large">大</button>
+    </div>
+</div>                               
 </body>
 </html>
