@@ -80,7 +80,55 @@ if (searchInput) {
 // 📂 博客版块切换逻辑
 // ==========================================
 function switchCategory(category) {
-    currentCategory = category;
+    const pages = document.getElementById('book-pages');
+    if (!pages) return;
+
+    // 1. 如果点击的是当前版块，直接返回
+    if (currentCategory === category) return; 
+
+    // 2. 触发翻书动画（页面卷起）
+    pages.classList.add('flipping');
+
+    // 3. 等待动画执行到一半（300ms）时，偷偷把内容换掉
+    setTimeout(() => {
+        currentCategory = category;
+        
+        // 更新导航栏高亮
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        const navItem = document.querySelector(`.nav-item[onclick*="${category}"]`);
+        if (navItem) navItem.classList.add('active');
+
+        const searchAndFilter = document.getElementById('search-and-filter');
+        const fanficLock = document.getElementById('fanfic-lock');
+        const worksList = document.getElementById('works-list');
+
+        // 根据分类调整显示状态
+        if (category === '同人') {
+            const isFanficAuth = sessionStorage.getItem('fanfic_authenticated') === 'true';
+            if (isFanficAuth) {
+                fanficLock.style.display = 'none';
+                searchAndFilter.style.display = 'block'; 
+                worksList.style.display = 'block';
+                filterAndSearch();
+            } else {
+                searchAndFilter.style.display = 'none';
+                worksList.style.display = 'none';
+                fanficLock.style.display = 'block';
+            }
+        } else {
+            fanficLock.style.display = 'none';
+            searchAndFilter.style.display = 'block';
+            worksList.style.display = 'block';
+            filterAndSearch();
+        }
+
+        // 4. 内容换好之后，让页面“翻回来”（平铺）
+        setTimeout(() => {
+            pages.classList.remove('flipping');
+        }, 50);
+
+    }, 300); // 300ms 对应 CSS 动画的一半时间
+}
     
     // 更新导航栏高亮
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
