@@ -77,7 +77,7 @@ function changeFontSize(size) {
     else if (size === 'medium') root.style.setProperty('--reading-font-size', '1.05em');
     else if (size === 'large') root.style.setProperty('--reading-font-size', '1.2em');
     localStorage.setItem('reader-font-size', size);
-    document.querySelectorAll('.font-controls button').forEach(btn => btn.classList.remove('active'));
+document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById('btn-' + size);
     if (targetBtn) targetBtn.classList.add('active');
 }
@@ -110,6 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // 切换悬浮字体面板的显示/隐藏
 function toggleFontPanel() {
+    function toggleFontPanel() {
+    const panel = document.getElementById('font-panel');
+    if (!panel) return; // ✅ 新增：如果找不到面板，直接返回，不报错
+    
+    if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+    } else {
+        panel.style.display = 'none';
+    }
+}
     const panel = document.getElementById('font-panel');
     if (panel.style.display === 'none') {
         panel.style.display = 'block';
