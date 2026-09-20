@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-   <script>
-    // 检查是否已通过全站密码验证
-    if (sessionStorage.getItem('site_authenticated') !== 'true') {
-        // 如果没有，强制踢回首页去输密码
-        window.location.href = '../index.html';
-    }
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>命运的交错 - 我的同人作品</title>
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="stylesheet" href="../style.css"> <!-- 注意路径是 ../style.css -->
+    <link rel="stylesheet" href="../style.css"> <!-- 路径必须有 ../ -->
+    
+    <!-- 防绕过检查 -->
+    <script>
+        if (sessionStorage.getItem('site_authenticated') !== 'true') {
+            window.location.href = '../index.html';
+        }
+    </script>
 </head>
 <body>
-<div id="protected-content">
+
     <h1 class="story-title">命运的交错</h1>
     <div style="text-align: center; color: #888; font-size: 0.9em; margin-bottom: 30px;">
         作者：你的笔名 | 字数：3000+ | 状态：已完结
     </div>
-<!-- 字号调节按钮 -->
-<div class="font-controls">
-    <span>字体大小：</span>
-    <button onclick="changeFontSize('small')" id="btn-small">小</button>
-    <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
-    <button onclick="changeFontSize('large')" id="btn-large">大</button>
-</div>
-   <div class="story-content">
-    <p>这里是你的小说第一段。直接写你的文字，不要带上多余的标签。</p>
-    <p>这里是你的小说第二段。</p>
-    <p>这里是最后一段。</p>
-</div>
-<div class="seal">
-    完
-</div>
+
+    <!-- 字体调节按钮 -->
+    <div class="font-controls">
+        <span>字体大小：</span>
+        <button onclick="changeFontSize('small')" id="btn-small">小</button>
+        <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
+        <button onclick="changeFontSize('large')" id="btn-large">大</button>
     </div>
+
+    <div id="protected-content">
+        <div class="story-content">
+            <p>这里是正文的第一段。</p>
+            <p>这里是正文的第二段。</p>
+        </div>
+    </div>
+
     <a href="../index.html" class="back-link">← 返回作品目录</a>
 
 </body>
