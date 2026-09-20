@@ -254,3 +254,46 @@ body {
     background: var(--accent-color); /* 颜色随主题变化 */
     width: 0%;
     transition: width 0.1s ease;
+/* ==================== 字号调节功能 ==================== */
+:root {
+    /* 默认字号：中等 */
+    --reading-font-size: 1.05em;
+}
+
+/* 让文章正文使用这个变量 */
+.story-content {
+    font-size: var(--reading-font-size);
+    transition: font-size 0.3s ease; /* 切换时平滑过渡 */
+}
+
+/* 按钮容器，居中对齐 */
+.font-controls {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+    color: #8b8b8b;
+}
+
+/* 按钮样式，贴合你的复古木色风格 */
+.font-controls button {
+    margin: 0 5px;
+    padding: 4px 12px;
+    background-color: transparent;
+    border: 1px solid #d1c3b4;
+    border-radius: 15px;
+    color: #6b4c3a;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.font-controls button:hover {
+    background-color: #f0ebe4;
+}
+
+/* 选中状态（当前字号）高亮 */
+.font-controls button.active {
+    background-color: #6b4c3a;
+    color: #ffffff;
+    border-color: #6b4c3a;
+}
