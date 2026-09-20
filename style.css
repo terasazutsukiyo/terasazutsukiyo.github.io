@@ -211,3 +211,39 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
     transform: rotateY(-20deg) scale(0.98);
     opacity: 0.3;
 }
+/* ==================== 上下篇翻页 ==================== */
+#pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px dashed #d1c3b4;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.page-link {
+    font-size: 0.9em;
+    color: #6b4c3a;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    max-width: 45%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.page-link:hover {
+    background-color: #f0ebe4;
+    border-color: #d1c3b4;
+}
+
+.page-link.disabled {
+    color: #c4b9ae;
+    cursor: not-allowed;
+    font-style: italic;
+}
