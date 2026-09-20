@@ -89,3 +89,62 @@ function checkFanficPassword() {
 document.addEventListener('DOMContentLoaded', () => {
     renderWorks(postsData.filter(p => p.category === 'Blog'));
 });
+// ==========================================
+// 📖 上下篇翻页功能
+// ==========================================
+function renderPagination() {
+    const container = document.getElementById('pagination-container');
+    if (!container) return; // 如果页面没有这个容器，直接跳过，防止报错
+
+    // 1. 获取当前页面的路径 (兼容有无 .html 的情况)
+    let currentPath = window.location.pathname;
+    if (currentPath.endsWith('/')) currentPath += 'index.html';
+    
+    // 2. 找到当前文章的索引
+    const currentIndex = postsData.findIndex(post => currentPath.includes(post.link.replace('../', '')));
+    
+    // 如果找不到这篇文章，或者数据里只有一篇文章，就不显示翻页
+    if (currentIndex === -1 || postsData.length <= 1) {
+        container.style.display = 'none';
+        return;
+    }
+
+    // 3. 获取上一篇和下一篇（只匹配同一个版块）
+    let prevPost = null;
+    let nextPost = null;
+    
+    for (let i = currentIndex - 1; i >= 0; i--) {
+        if (postsData[i].category === postsData[currentIndex].category) {
+            prevPost = postsData[i];
+            break;
+        }
+    }
+    for (let i = currentIndex + 1; i < postsData.length; i++) {
+        if (postsData[i].category === postsData[currentIndex].category) {
+            nextPost = postsData[i];
+            break;
+        }
+    }
+
+    // 4. 生成 HTML
+    let html = '';
+    // 注意：文章页在 works 文件夹里，所以链接要加 ../ 回到上一级
+    if (prevPost) {
+        html += `<a href="../${prevPost.link}" class="page-link">← 上一篇：${prevPost.title}</a>`;
+    } else {
+        html += `<span class="page-link disabled">← 已经是第一篇了</span>`;
+    }
+    
+    if (nextPost) {
+        html += `<a href="../${nextPost.link}" class="page-link">下一篇：${nextPost.title} →</a>`;
+    } else {
+        html += `<span class="page-link disabled">已经是最后一篇了 →</span>`;
+    }
+
+    container.innerHTML = html;
+}
+
+// 页面加载时自动执行翻页渲染
+document.addEventListener('DOMContentLoaded', () => {
+    renderPagination();
+});
