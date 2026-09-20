@@ -75,18 +75,16 @@ filterTags.forEach(tag => {
 // 🔤 字号调节功能（只改变正文大小）
 // ==========================================
 function changeFontSize(size) {
-    const content = document.querySelector('.story-content'); // 找到正文区域
-    if (!content) return; // 如果这个页面没有正文，就直接结束，防止报错
+    const content = document.querySelector('.story-content');
+    if (!content) return;
 
-    // 精准设置正文字号
-    if (size === 'small') content.style.fontSize = '0.9em';
+    // 把大号从 1.25em 调整到 1.15em，中号也稍微调整
+    if (size === 'small') content.style.fontSize = '0.95em';
     else if (size === 'medium') content.style.fontSize = '1.05em';
-    else if (size === 'large') content.style.fontSize = '1.25em';
+    else if (size === 'large') content.style.fontSize = '1.15em'; // 从 1.25 降下来，会更柔和
 
-    // 保存偏好
     localStorage.setItem('reader-font-size', size);
     
-    // 更新按钮高亮状态
     document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById('btn-' + size);
     if (targetBtn) targetBtn.classList.add('active');
