@@ -1,23 +1,21 @@
 /* 基础重置与全局设定 */
 /* 引入思源宋体 (Google Fonts / Noto Serif SC 版) */
 @import url('https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    body {
     /* 优先使用思源宋体，如果加载失败则回退到其他宋体 */
     font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun", serif;
-    /* ... 其他保持不变 ... */
-}
-    body {
     /* 保留原来的底色，加上一个从顶部中央散发的暖光 */
     background: radial-gradient(circle at 50% 0%, #ffffff 0%, #f9f7f2 60%, #ede6dc 100%);
-    /* ...其他属性保持不变... */
-}
     color: #3a3a3a; /* 深灰色文字，确保阅读清晰 */
     line-height: 1.9; /* 舒适的长文阅读行高 */
     padding: 40px 20px;
     max-width: 720px; /* 限制阅读宽度，避免眼睛左右移动太累 */
+    margin: 0 auto;
+    min-height: 100vh;
+}
     margin: 0 auto;
     min-height: 100vh;
 }
