@@ -13,11 +13,12 @@
     <link rel="stylesheet" href="../style.css">
     
     <!-- 防绕过密码检查 -->
-    <script>
-        if (sessionStorage.getItem('site_authenticated') !== 'true') {
-            window.location.href = '../index.html';
-        }
-    </script>
+   <script>
+    // 检查同人密码
+    if (sessionStorage.getItem('fanfic_authenticated') !== 'true') {
+        window.location.href = '../index.html';
+    }
+</script>
 </head>
 <body>
 
