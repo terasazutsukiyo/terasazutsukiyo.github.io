@@ -201,3 +201,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lockScreen) lockScreen.style.display = 'none';
     }
 });
+// ==================== 字号调节功能 ====================
+function changeFontSize(size) {
+    const root = document.documentElement;
+    
+    // 1. 设置对应的字号大小
+    if (size === 'small') {
+        root.style.setProperty('--reading-font-size', '0.9em');
+    } else if (size === 'medium') {
+        root.style.setProperty('--reading-font-size', '1.05em');
+    } else if (size === 'large') {
+        root.style.setProperty('--reading-font-size', '1.2em');
+    }
+    
+    // 2. 保存到浏览器，下次打开记住选择
+    localStorage.setItem('reader-font-size', size);
+    
+    // 3. 更新按钮的高亮状态
+    const buttons = document.querySelectorAll('.font-controls button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    document.getElementById('btn-' + size).classList.add('active');
+}
+
+// 页面加载时，读取之前保存的字号偏好
+document.addEventListener('DOMContentLoaded', () => {
+    const savedSize = localStorage.getItem('reader-font-size');
+    if (savedSize) {
+        changeFontSize(savedSize);
+    }
+});
