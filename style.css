@@ -155,3 +155,37 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
     border: 1px solid #ede6dc !important;
     background-color: #ffffff;
 }
+/* 博客版块导航 */
+.category-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    padding: 8px 16px;
+    font-size: 1em;
+    color: #6b4c3a;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+.nav-item:hover {
+    color: #2c2c2c;
+}
+
+.nav-item.active {
+    color: #2c2c2c;
+    border-bottom: 2px solid #6b4c3a;
+}
+
+/* 首页文章列表样式（博客摘要版） */
+.post-title { font-size: 1.2em; color: #2c2c2c; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+.post-title:hover { color: #6b4c3a; }
+.post-date { font-size: 0.8em; color: #b0a8a0; margin-bottom: 10px; }
+.post-summary { font-size: 0.9em; color: #5c5853; line-height: 1.6; margin-bottom: 12px; text-indent: 0; }
