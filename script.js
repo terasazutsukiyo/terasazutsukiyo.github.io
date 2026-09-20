@@ -145,9 +145,9 @@ function initGiscus() {
     const script = document.createElement('script');
     script.src = 'https://giscus.app/client.js';
     script.setAttribute('data-repo', '你的用户名/blog-comments');
-    script.setAttribute('data-repo-id', 'R_kgDOxxxxxx');        // 👈 替换为你的 repo-id
+    script.setAttribute('data-repo-id', 'R_kgDOUiQinQ');        // 👈 替换为你的 repo-id
     script.setAttribute('data-category', '评论');
-    script.setAttribute('data-category-id', 'DIC_kwDOxxxxxx');  // 👈 替换为你的 category-id
+    script.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp');  // 👈 替换为你的 category-id
     script.setAttribute('data-mapping', 'pathname');
     script.setAttribute('data-strict', '1');
     script.setAttribute('data-reactions-enabled', '1');
