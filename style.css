@@ -122,5 +122,4 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
 .font-panel button.active { background-color: #6b4c3a; color: #ffffff; border-color: #6b4c3a; }
 .story-content {
     font-size: 1.05em;
-    transition: font-size 0.3s ease;
 }
