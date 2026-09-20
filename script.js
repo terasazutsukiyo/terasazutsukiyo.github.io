@@ -135,3 +135,34 @@ function toggleFontPanel() {
         panel.style.display = 'none';
     }
 }
+// ==========================================
+// 💬 Giscus 评论系统
+// ==========================================
+function initGiscus() {
+    const container = document.getElementById('giscus-container');
+    if (!container) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.setAttribute('data-repo', '你的用户名/blog-comments');
+    script.setAttribute('data-repo-id', 'R_kgDOxxxxxx');        // 👈 替换为你的 repo-id
+    script.setAttribute('data-category', '评论');
+    script.setAttribute('data-category-id', 'DIC_kwDOxxxxxx');  // 👈 替换为你的 category-id
+    script.setAttribute('data-mapping', 'pathname');
+    script.setAttribute('data-strict', '1');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'bottom');
+    script.setAttribute('data-theme', 'noborder_light');
+    script.setAttribute('data-lang', 'zh-CN');
+    script.setAttribute('data-loading', 'lazy');
+    script.crossOrigin = 'anonymous';
+    script.async = true;
+
+    container.appendChild(script);
+}
+
+// 页面加载时自动初始化
+document.addEventListener('DOMContentLoaded', () => {
+    initGiscus();
+});
