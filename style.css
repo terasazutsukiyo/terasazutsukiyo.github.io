@@ -1,6 +1,5 @@
 /* 基础重置与全局设定 */
 /* 引入思源宋体 (Google Fonts / Noto Serif SC 版) */
-@import url('https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
 /* 顶部头像样式 */
 .profile-img {
     display: block;
