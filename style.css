@@ -22,15 +22,14 @@ body {
 /* 顶部头像样式 */
 .profile-img {
     display: block;
-    width: 150px;           /* 限制宽度 */
-    height: 150px;          /* 限制高度 */
-    object-fit: cover;      /* 裁剪成正方形 */
-    border-radius: 50%;     /* 变成圆形 */
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%; /* 圆形 */
     border: 3px solid #d1c3b4;
     box-shadow: 0 4px 10px rgba(107, 76, 58, 0.15);
-    margin: 0 auto 20px auto; /* 居中且下方留出间距 */
+    margin: 0 auto 20px auto;
 }
-
 /* 标题样式 */
 h1 { 
     font-size: 1.8em; 
