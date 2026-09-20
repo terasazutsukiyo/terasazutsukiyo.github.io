@@ -135,3 +135,23 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
     letter-spacing: 0.05em;  /* 稍微加点字间距，显得精致 */
     opacity: 0.8;            /* 稍微变透明一点，不要那么显眼 */
 }
+/* ==================== Giscus 评论区 ==================== */
+.giscus-container {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid #ede6dc;
+}
+
+.giscus-title {
+    font-size: 1.1em;
+    color: #6b4c3a;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.giscus-container iframe {
+    border-radius: 8px;
+    border: 1px solid #ede6dc !important;
+    background-color: #ffffff;
+}
