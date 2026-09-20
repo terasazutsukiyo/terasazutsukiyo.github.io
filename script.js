@@ -71,13 +71,23 @@ filterTags.forEach(tag => {
 // ==========================================
 // 🔤 字号调节功能
 // ==========================================
+// ==========================================
+// 🔤 字号调节功能（只改变正文大小）
+// ==========================================
 function changeFontSize(size) {
-    const root = document.documentElement;
-    if (size === 'small') root.style.setProperty('--reading-font-size', '0.9em');
-    else if (size === 'medium') root.style.setProperty('--reading-font-size', '1.05em');
-    else if (size === 'large') root.style.setProperty('--reading-font-size', '1.2em');
+    const content = document.querySelector('.story-content'); // 找到正文区域
+    if (!content) return; // 如果这个页面没有正文，就直接结束，防止报错
+
+    // 精准设置正文字号
+    if (size === 'small') content.style.fontSize = '0.9em';
+    else if (size === 'medium') content.style.fontSize = '1.05em';
+    else if (size === 'large') content.style.fontSize = '1.25em';
+
+    // 保存偏好
     localStorage.setItem('reader-font-size', size);
-document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
+    
+    // 更新按钮高亮状态
+    document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById('btn-' + size);
     if (targetBtn) targetBtn.classList.add('active');
 }
