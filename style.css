@@ -74,3 +74,49 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
 
 /* 文章页专属：印章 */
 .seal { width: 50px; height: 50px; border: 2px solid #8b3a3a; border-radius: 4px; color: #8b3a3a; font-size: 1.4em; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 40px auto; transform: rotate(-10deg); opacity: 0.85; }
+/* ==================== 悬浮字体调节工具 ==================== */
+.floating-font-tool {
+    position: fixed;       /* 固定在屏幕位置 */
+    bottom: 30px;          /* 距离底部30像素 */
+    right: 30px;           /* 距离右侧30像素 */
+    z-index: 1000;         /* 保证浮在最上层 */
+}
+
+#font-toggle-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #6b4c3a; /* 复古棕色按钮 */
+    color: #ffffff;
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+#font-toggle-btn:hover {
+    transform: scale(1.1);
+    background-color: #8b6b54;
+}
+
+/* 弹出的设置面板 */
+.font-panel {
+    position: absolute;
+    bottom: 60px;          /* 在按钮上方展开 */
+    right: 0;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #d1c3b4;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    animation: fadeIn 0.3s ease;
+}
+
+/* 复用你原有的按钮样式 */
+.font-panel button {
+    margin: 0 5px; padding: 4px 12px; background-color: transparent; border: 1px solid #d1c3b4; border-radius: 15px; color: #6b4c3a; cursor: pointer; font-family: inherit; transition: all 0.3s ease;
+}
+.font-panel button:hover { background-color: #f0ebe4; }
+.font-panel button.active { background-color: #6b4c3a; color: #ffffff; border-color: #6b4c3a; }
