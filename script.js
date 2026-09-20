@@ -8,7 +8,7 @@ const postsData = [
 ];
 
 let currentCategory = 'Blog';
-const FANFIC_PASSWORD = "fanfic2026";
+const FANFIC_PASSWORD = "3528";
 
 // ==========================================
 // 🎨 渲染文章列表
