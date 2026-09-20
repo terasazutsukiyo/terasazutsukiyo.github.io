@@ -1,7 +1,18 @@
 /* 基础重置与全局设定 */
 /* 引入思源宋体 (Google Fonts / Noto Serif SC 版) */
 @import url('https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
-
+/* 顶部头像样式 */
+.profile-img {
+    display: block;
+    width: 150px;           /* 固定宽度 */
+    height: 150px;          /* 固定高度 */
+    max-width: 100%;        /* 保险：无论如何都不会撑破屏幕 */
+    object-fit: cover;      /* 裁剪成正方形 */
+    border-radius: 50%;     /* 变成圆形 */
+    border: 3px solid #d1c3b4;
+    box-shadow: 0 4px 10px rgba(107, 76, 58, 0.15);
+    margin: 0 auto 20px auto; /* 居中且下方留出间距 */
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
