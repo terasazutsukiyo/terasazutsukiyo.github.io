@@ -19,17 +19,16 @@ body {
     margin: 0 auto;
     min-height: 100vh;
 }
-
 /* 顶部头像样式 */
 .profile-img {
     display: block;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%; /* 圆形头像 */
-    border: 3px solid #d1c3b4; /* 柔和的暖灰色边框 */
-    box-shadow: 0 4px 10px rgba(107, 76, 58, 0.15); /* 淡淡的木质色阴影 */
-    margin: 0 auto 20px auto;
+    width: 150px;           /* 限制宽度 */
+    height: 150px;          /* 限制高度 */
+    object-fit: cover;      /* 裁剪成正方形 */
+    border-radius: 50%;     /* 变成圆形 */
+    border: 3px solid #d1c3b4;
+    box-shadow: 0 4px 10px rgba(107, 76, 58, 0.15);
+    margin: 0 auto 20px auto; /* 居中且下方留出间距 */
 }
 
 /* 标题样式 */
