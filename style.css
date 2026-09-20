@@ -1,311 +1,76 @@
-/* 基础重置与全局设定 */
-/* 引入思源宋体 (Google Fonts / Noto Serif SC 版) */
-/* 顶部头像样式 */
-.profile-img {
-    display: block;
-    width: 150px;           /* 固定宽度 */
-    height: 150px;          /* 固定高度 */
-    max-width: 100%;        /* 保险：无论如何都不会撑破屏幕 */
-    object-fit: cover;      /* 裁剪成正方形 */
-    border-radius: 50%;     /* 变成圆形 */
-    border: 3px solid #d1c3b4;
-    box-shadow: 0 4px 10px rgba(107, 76, 58, 0.15);
-    margin: 0 auto 20px auto; /* 居中且下方留出间距 */
-}
+/* 引入思源宋体 */
+@import url('https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+
+/* 基础重置 */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* 全局设定：羊皮纸背景与思源宋体 */
 body {
-    /* 优先使用思源宋体，如果加载失败则回退到其他宋体 */
     font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun", serif;
-    /* 保留原来的底色，加上一个从顶部中央散发的暖光 */
     background: radial-gradient(circle at 50% 0%, #ffffff 0%, #f9f7f2 60%, #ede6dc 100%);
-    color: #3a3a3a; /* 深灰色文字，确保阅读清晰 */
-    line-height: 1.9; /* 舒适的长文阅读行高 */
+    color: #3a3a3a;
+    line-height: 1.9;
     padding: 40px 20px;
-    max-width: 720px; /* 限制阅读宽度，避免眼睛左右移动太累 */
+    max-width: 720px;
     margin: 0 auto;
     min-height: 100vh;
 }
-    margin: 0 auto;
-    min-height: 100vh;
-}
-/* 顶部头像样式 */
+
+/* 顶部头像样式（防巨图） */
 .profile-img {
     display: block;
     width: 150px;
     height: 150px;
+    max-width: 100%;
     object-fit: cover;
-    border-radius: 50%; /* 圆形 */
+    border-radius: 50%;
     border: 3px solid #d1c3b4;
     box-shadow: 0 4px 10px rgba(107, 76, 58, 0.15);
     margin: 0 auto 20px auto;
 }
+
 /* 标题样式 */
-h1 { 
-    font-size: 1.8em; 
-    text-align: center; 
-    margin-bottom: 10px; 
-    color: #2c2c2c; 
-    letter-spacing: 2px;
-}
-h2 { 
-    font-size: 1.3em; 
-    margin: 40px 0 20px; 
-    color: #6b4c3a; /* 深橡木棕色，呼应头像背景 */
-    border-bottom: 1px solid #e0d8ce;
-    padding-bottom: 10px;
-    letter-spacing: 1px;
-}
+h1 { font-size: 1.8em; text-align: center; margin-bottom: 10px; color: #2c2c2c; letter-spacing: 2px; }
+h2 { font-size: 1.3em; margin: 40px 0 20px; color: #6b4c3a; border-bottom: 1px solid #e0d8ce; padding-bottom: 10px; letter-spacing: 1px; }
 
 /* 正文段落 */
-p { 
-    margin-bottom: 1.4em; 
-    text-indent: 2em; 
-    font-size: 1.05em;
-    text-align: justify; /* 两端对齐，视觉更整齐 */
-}
+p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justify; }
+.story-content { font-size: 1.05em; letter-spacing: 0.05em; }
 
-/* 首页目录链接样式 */
+/* 首页作品卡片 */
 .work-list { list-style: none; margin-top: 20px; }
-.work-list li { 
-    margin-bottom: 20px; 
-    border-bottom: 1px dashed #ddd5c9; 
-    padding-bottom: 15px; 
-}
-.work-list li {
-    background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: 8px; /* 圆角 */
-    margin-bottom: 15px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    /* 移除之前的 border-bottom 虚线，改用卡片风格 */
-    border-bottom: 1px solid var(--border-color); 
-}
+.work-list li { background-color: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e0d8ce; box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: all 0.3s ease; }
+.work-list li:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(107, 76, 58, 0.1); border-color: #6b4c3a; }
+.work-list a { color: #2c2c2c; text-decoration: none; font-size: 1.1em; transition: color 0.3s ease; }
+.work-list a:hover { color: #6b4c3a; text-decoration: underline; }
+.work-list .meta { font-size: 0.85em; color: #8b8b8b; margin-top: 8px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
-.work-list li:hover {
-    transform: translateY(-4px); /* 向上浮动 */
-    box-shadow: 0 10px 20px rgba(107, 76, 58, 0.1); /* 加深阴影 */
-    border-color: var(--accent-color); /* 边框变色 */
-}
-.work-list .meta { 
-    font-size: 0.85em; 
-    color: #8b8b8b; 
-    margin-top: 8px; 
-}
+/* 标签美化 */
+.badge { padding: 2px 8px; background-color: #ede8e1; color: #6b4c3a; border-radius: 4px; font-size: 0.9em; }
+.status-done { background-color: #e6f4ea; color: #1e8e3e; }
+.status-ongoing { background-color: #fef7e0; color: #b06000; }
 
-/* 作品阅读页样式 */
+/* 搜索框 */
+.search-box { margin: 30px 0 20px 0; text-align: center; }
+.search-box input { width: 100%; max-width: 450px; padding: 12px 20px; font-size: 1em; font-family: inherit; color: #3a3a3a; background-color: #ffffff; border: 1px solid #d1c3b4; border-radius: 30px; outline: none; box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), 0 2px 8px rgba(107, 76, 58, 0.05); transition: all 0.3s ease; }
+.search-box input:focus { border-color: #6b4c3a; box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), 0 4px 12px rgba(107, 76, 58, 0.15); }
+
+/* 分类标签 */
+.filter-group { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+.filter-tag { padding: 6px 16px; font-size: 0.9em; color: #6b4c3a; background-color: transparent; border: 1px solid #d1c3b4; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; user-select: none; }
+.filter-tag:hover { background-color: #f0ebe4; }
+.filter-tag.active { background-color: #6b4c3a; color: #f9f7f2; border-color: #6b4c3a; }
+
+/* 文章页专属：字号调节按钮 */
+.font-controls { text-align: center; margin-bottom: 30px; font-size: 0.9em; color: #8b8b8b; }
+.font-controls button { margin: 0 5px; padding: 4px 12px; background-color: transparent; border: 1px solid #d1c3b4; border-radius: 15px; color: #6b4c3a; cursor: pointer; font-family: inherit; transition: all 0.3s ease; }
+.font-controls button:hover { background-color: #f0ebe4; }
+.font-controls button.active { background-color: #6b4c3a; color: #ffffff; border-color: #6b4c3a; }
+
+/* 文章页专属：标题与返回链接 */
 .story-title { text-align: center; margin-bottom: 30px; color: #2c2c2c; }
-.story-content { font-size: 1.05em; }
-.back-link { 
-    display: block; 
-    text-align: center; 
-    margin-top: 50px; 
-    color: #8b8b8b; 
-    text-decoration: none; 
-    font-size: 0.9em; 
-}
+.back-link { display: block; text-align: center; margin-top: 50px; color: #8b8b8b; text-decoration: none; font-size: 0.9em; }
 .back-link:hover { color: #6b4c3a; text-decoration: underline; }
 
-/* 免责声明 */
-.disclaimer {
-    font-size: 0.8em;
-    color: #8b8b8b;
-    text-align: center;
-    margin-top: 60px;
-    border-top: 1px solid #e0d8ce;
-    padding-top: 20px;
-}
-/* --- 搜索框样式 --- */
-.search-box {
-    margin: 30px 0 20px 0;
-    text-align: center;
-}
-.search-box input {
-    width: 100%;
-    max-width: 450px;
-    padding: 12px 20px;
-    font-size: 1em;
-    font-family: inherit;
-    color: #3a3a3a;
-    background-color: #ffffff;
-    border: 1px solid #d1c3b4;
-    border-radius: 30px; /* 圆角胶囊型搜索框 */
-    outline: none;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), 0 2px 8px rgba(107, 76, 58, 0.05);
-    transition: all 0.3s ease;
-}
-.search-box input:focus {
-    border-color: #6b4c3a;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), 0 4px 12px rgba(107, 76, 58, 0.15);
-}
-
-/* --- 合集标签样式 --- */
-.filter-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 40px;
-}
-.filter-tag {
-    padding: 6px 16px;
-    font-size: 0.9em;
-    color: #6b4c3a;
-    background-color: transparent;
-    border: 1px solid #d1c3b4;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    user-select: none;
-}
-.filter-tag:hover {
-    background-color: #f0ebe4;
-}
-.filter-tag.active {
-    background-color: #6b4c3a;
-    color: #f9f7f2;
-    border-color: #6b4c3a;
-}
-
-/* --- 作品列表的动态过渡 --- */
-.work-list {
-    list-style: none;
-    margin-top: 20px;
-}
-.work-item {
-    margin-bottom: 20px;
-    border-bottom: 1px dashed #ddd5c9;
-    padding-bottom: 15px;
-    /* 加入淡入动画 */
-    animation: fadeIn 0.4s ease forwards;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- 元数据与小标签样式 --- */
-.work-item .meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85em;
-    color: #8b8b8b;
-    margin-top: 8px;
-}
-.badge {
-    padding: 2px 8px;
-    background-color: #ede8e1;
-    color: #6b4c3a;
-    border-radius: 4px;
-    font-size: 0.9em;
-}
-.status-done {
-    background-color: #e6f4ea;
-    color: #1e8e3e;
-}
-.status-ongoing {
-    background-color: #fef7e0;
-    color: #b06000;
-}
-/* 日夜模式变量 */
-:root {
-    --bg-color: #f9f7f2;
-    --text-color: #3a3a3a;
-    --accent-color: #6b4c3a;
-    --border-color: #d1c3b4;
-    --card-bg: #ffffff;
-}
-
-[data-theme="dark"] {
-    --bg-color: #151515;
-    --text-color: #d1ccc5;
-    --accent-color: #c9a47e; /* 暗金 */
-    --border-color: #4a3b31;
-    --card-bg: #1f1d1a;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.4s ease, color 0.4s ease; /* 平滑过渡 */
-}
-
-/* 浮动切换按钮 */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-    background-color: var(--card-bg);
-    cursor: pointer;
-    font-size: 1.2em;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    z-index: 1000;
-}
-.theme-toggle:hover {
-    transform: scale(1.1);
-    border-color: var(--accent-color);
-.progress-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: transparent;
-    z-index: 999;
-}
-.progress-bar {
-    height: 3px;
-    background: var(--accent-color); /* 颜色随主题变化 */
-    width: 0%;
-    transition: width 0.1s ease;
-/* ==================== 字号调节功能 ==================== */
-:root {
-    /* 默认字号：中等 */
-    --reading-font-size: 1.05em;
-}
-
-/* 让文章正文使用这个变量 */
-.story-content {
-    font-size: var(--reading-font-size);
-    transition: font-size 0.3s ease; /* 切换时平滑过渡 */
-}
-
-/* 按钮容器，居中对齐 */
-.font-controls {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 0.9em;
-    color: #8b8b8b;
-}
-
-/* 按钮样式，贴合你的复古木色风格 */
-.font-controls button {
-    margin: 0 5px;
-    padding: 4px 12px;
-    background-color: transparent;
-    border: 1px solid #d1c3b4;
-    border-radius: 15px;
-    color: #6b4c3a;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.3s ease;
-}
-
-.font-controls button:hover {
-    background-color: #f0ebe4;
-}
-
-/* 选中状态（当前字号）高亮 */
-.font-controls button.active {
-    background-color: #6b4c3a;
-    color: #ffffff;
-    border-color: #6b4c3a;
-}
+/* 文章页专属：印章 */
+.seal { width: 50px; height: 50px; border: 2px solid #8b3a3a; border-radius: 4px; color: #8b3a3a; font-size: 1.4em; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 40px auto; transform: rotate(-10deg); opacity: 0.85; }
