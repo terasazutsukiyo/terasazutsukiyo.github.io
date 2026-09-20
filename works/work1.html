@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>命运的交错 - 我的同人作品</title>
     
-    <!-- 1. 引入字体 (放在最上面) -->
+    <!-- 提前加载思源宋体 -->
     <link rel="preconnect" href="https://fonts.font.im">
     <link href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- 2. 引入你的专属样式表 (必须带 ../) -->
+    <!-- 样式表必须带 ../ -->
     <link rel="stylesheet" href="../style.css">
     
-    <!-- 3. 防绕过密码的检查 -->
+    <!-- 防绕过密码检查 -->
     <script>
         if (sessionStorage.getItem('site_authenticated') !== 'true') {
             window.location.href = '../index.html';
@@ -34,14 +34,19 @@
         <button onclick="changeFontSize('large')" id="btn-large">大</button>
     </div>
 
-    <div id="protected-content">
-        <div class="story-content">
-            <p>这里是正文的第一段。</p>
-            <p>这里是正文的第二段。</p>
-        </div>
+    <!-- 正文区域 -->
+    <div class="story-content">
+        <p>这里是正文的第一段。直接写你的文字，不要带上多余的标签。</p>
+        <p>这里是正文的第二段。</p>
+        <p>这里是最后一段。</p>
     </div>
+
+    <!-- 完本印章 -->
+    <div class="seal">完</div>
 
     <a href="../index.html" class="back-link">← 返回作品目录</a>
 
+    <!-- 引入 JS -->
+    <script src="../script.js"></script>
 </body>
 </html>
