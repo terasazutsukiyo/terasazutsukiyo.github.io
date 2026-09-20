@@ -3,60 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>personal Blog</title>
-    <!-- 预连接字体服务器，加快加载 -->
-<link rel="preconnect" href="https://fonts.font.im">
-<!-- 引入思源宋体 -->
-<link href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <title>执笔于暗夜</title>
     <link rel="stylesheet" href="style.css">
-    <!-- 防止被搜索引擎收录 -->
     <meta name="robots" content="noindex, nofollow">
 </head>
-<body>  
-          <!-- 博客版块导航 -->
-        <div class="category-nav">
-            <span class="nav-item active" onclick="switchCategory('日志')"> Blog</span>
-            <span class="nav-item" onclick="switchCategory('随笔')"> 随笔</span>
-            <span class="nav-item" onclick="switchCategory('同人')"> 同人</span>
-        </div>
-        <!-- 注意：导航栏 div 到此结束，不要遗漏 -->
+<body>
 
-        <!-- 搜索框和普通版块的标签（同人版块隐藏） -->
+    <!-- 首页内容 -->
+    <div id="main-content">
+        
+        <!-- 头像与标题 -->
+        <img src="avatar.jpg" alt="头像" class="profile-img">
+        <h1>zTerasazuTsukiyo</h1>
+        <p style="text-align: center; color: #8b8b8b; text-indent: 0; margin-bottom: 30px; font-size: 0.95em;">
+            <span id="typewriter"></span>
+        </p>
+
+        <!-- 博客版块导航 -->
+        <div class="category-nav">
+            <span class="nav-item active" onclick="switchCategory('日志')">📖 Blog</span>
+            <span class="nav-item" onclick="switchCategory('随笔')">✍️ 随笔</span>
+            <span class="nav-item" onclick="switchCategory('同人')">🔒 同人</span>
+        </div>
+
+        <!-- 搜索框和标签（同人版块会自动隐藏） -->
         <div id="search-and-filter" style="display: none;">
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="搜索文章标题、CP或标签...">
             </div>
             <div class="filter-group" id="filter-group">
-                <!-- 标签会由 JS 自动生成 -->
+                <!-- 标签由 JS 自动生成 -->
             </div>
-        </div> <!-- 这里也是独立的结束标签 -->
+        </div>
 
         <!-- 同人版块密码锁 -->
         <div id="fanfic-lock" style="display: none; text-align: center; padding: 50px 0;">
             <h2 style="color: #6b4c3a;">版块已加密</h2>
-            <p style="color: #8b8b8b; margin-bottom: 20px;">请输入密码：</p>
+            <p style="color: #8b8b8b; margin-bottom: 20px;">请输入密码解锁：</p>
             <input type="password" id="fanfic-password-input" placeholder="输入密码..." style="padding: 12px 20px; width: 250px; border: 1px solid #d1c3b4; border-radius: 30px; outline: none; text-align: center;">
             <br>
-            <button onclick="checkFanficPassword()" style="margin-top: 20px; padding: 10px 30px; background-color: #6b4c3a; color: white; border: none; border-radius: 30px; cursor: pointer; font-family: inherit; font-size: 1em;">解锁版块</button>
+            <button onclick="checkFanficPassword()" style="margin-top: 20px; padding: 10px 30px; background-color: #6b4c3a; color: white; border: none; border-radius: 30px; cursor: pointer; font-family: inherit; font-size: 1em;">解锁</button>
             <p id="fanfic-error-msg" style="color: #8b3a3a; display: none; margin-top: 15px;">密码错误，请重试。</p>
         </div>
 
-        <!-- 文章列表 -->
+        <!-- 文章列表容器 -->
         <ul class="work-list" id="works-list"></ul>
-    <!-- 底部声明 -->
-    <div class="disclaimer">
-        本网站所有作品均为二次创作，无商业用途，与版权方无关。
-        仅供个人欣赏交流，严禁转载。
-    </div>
-</div>
 
-        <!-- 📖 作品列表（由 JS 自动填充） -->
-        <ul class="work-list" id="works-list">
-            <!-- 内容会自动生成 -->
-        </ul>
+        <!-- 底部声明 -->
+        <div class="disclaimer">
+           本网站所有作品均为原创或二次创作，无商业用途，与版权方无关。 仅供个人欣赏交流，严禁转载。
+        </div>
     </div>
 
-    <!-- 引入 JS -->
     <script src="script.js"></script>
 </body>
 </html>
