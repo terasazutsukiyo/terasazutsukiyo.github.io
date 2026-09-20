@@ -108,3 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
         changeFontSize(savedSize);
     }
 });
+// 切换悬浮字体面板的显示/隐藏
+function toggleFontPanel() {
+    const panel = document.getElementById('font-panel');
+    if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+    } else {
+        panel.style.display = 'none';
+    }
+}
