@@ -19,14 +19,14 @@ function checkSitePassword() {
 // ==========================================
 const postsData = [
     // Blog
-    { title: "20260920", link: "works/log1.html", category: "日志", date: "2026-09-20", tags: ["网站"], summary: "搭建了博客框架" },
+    { title: "20260920", link: "works/log1.html", category: "Blog", date: "2026-09-20", tags: ["网站"], summary: "搭建了博客框架" },
     // 随笔
     { title: "测试用", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["测试"], summary: "此篇用来测试网站" },
     // 同人
     { title: "命运的交错", link: "works/work1.html", category: "同人", cp: "A x B", type: "原著向", status: "已完结", date: "2026-09-19", tags: ["同人", "A x B"], summary: "这是一篇基于原作的同人小说..." }
 ];
 
-let currentCategory = '日志'; // 默认显示日志
+let currentCategory = 'Blog'; // 默认显示Blog
 const worksContainer = document.getElementById('works-list');
 const searchInput = document.getElementById('search-input');
 let currentFilter = '全部';
