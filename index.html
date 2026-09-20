@@ -37,13 +37,51 @@
     <!-- 📖 第二层：真正的首页内容（默认隐藏，输密码后显示） -->
     <!-- ========================================== -->
     <div id="main-content" style="display: none;">
-        
-        <!-- 头像与标题 -->
-        <img src="avatar.jpg" alt="我的头像" class="profile-img">
-        <h1>TerasazuTsukiyo</h1>
-        <p style="text-align: center; color: #8b8b8b; text-indent: 0; margin-bottom: 30px; font-size: 0.95em;">
-            <span id="typewriter"></span>
-        </p>
+    
+    <!-- 头像与标题 -->
+    <img src="avatar.jpg" alt="我的头像" class="profile-img">
+    <h1>执笔于暗夜</h1>
+    <p style="text-align: center; color: #8b8b8b; text-indent: 0; margin-bottom: 30px; font-size: 0.95em;">
+        <span id="typewriter"></span>
+    </p>
+
+    <!-- 📂 博客版块导航 -->
+    <div class="category-nav">
+        <span class="nav-item active" onclick="switchCategory('日志')">📖 日志</span>
+        <span class="nav-item" onclick="switchCategory('随笔')">✍️ 随笔</span>
+        <span class="nav-item" onclick="switchCategory('同人')">🔒 同人</span>
+        <a href="about.html" class="nav-item" style="text-decoration: none;">👤 关于我</a>
+    </div>
+
+    <!-- 搜索框和普通版块的标签（同人版块隐藏） -->
+    <div id="search-and-filter" style="display: none;">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="搜索文章标题、CP或标签...">
+        </div>
+        <div class="filter-group" id="filter-group">
+            <!-- 标签会由 JS 自动生成 -->
+        </div>
+    </div>
+
+    <!-- 🔒 同人版块密码锁（默认隐藏） -->
+    <div id="fanfic-lock" style="display: none; text-align: center; padding: 50px 0;">
+        <h2 style="color: #6b4c3a;">🔒 同人版块已加密</h2>
+        <p style="color: #8b8b8b; margin-bottom: 20px;">请输入同人专属密码解锁：</p>
+        <input type="password" id="fanfic-password-input" placeholder="输入密码..." style="padding: 12px 20px; width: 250px; border: 1px solid #d1c3b4; border-radius: 30px; outline: none; text-align: center;">
+        <br>
+        <button onclick="checkFanficPassword()" style="margin-top: 20px; padding: 10px 30px; background-color: #6b4c3a; color: white; border: none; border-radius: 30px; cursor: pointer; font-family: inherit; font-size: 1em;">解锁同人</button>
+        <p id="fanfic-error-msg" style="color: #8b3a3a; display: none; margin-top: 15px;">密码错误，请重试。</p>
+    </div>
+
+    <!-- 📄 文章列表容器（由 JS 渲染） -->
+    <ul class="work-list" id="works-list"></ul>
+
+    <!-- 底部声明 -->
+    <div class="disclaimer">
+        本网站所有作品均为二次创作，无商业用途，与版权方无关。
+        仅供个人欣赏交流，严禁转载。
+    </div>
+</div>
 
         <!-- 🔍 搜索框 -->
         <div class="search-box">
