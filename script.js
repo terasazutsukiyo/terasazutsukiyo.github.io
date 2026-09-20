@@ -81,15 +81,12 @@ if (searchInput) {
 // ==========================================
 function switchCategory(category) {
     const pages = document.getElementById('book-pages');
-    if (!pages) return;
+    
+    // 触发翻书动画
+    if (pages && currentCategory !== category) {
+        pages.classList.add('flipping');
+    }
 
-    // 1. 如果点击的是当前版块，直接返回
-    if (currentCategory === category) return; 
-
-    // 2. 触发翻书动画（页面卷起）
-    pages.classList.add('flipping');
-
-    // 3. 等待动画执行到一半（300ms）时，偷偷把内容换掉
     setTimeout(() => {
         currentCategory = category;
         
@@ -102,7 +99,6 @@ function switchCategory(category) {
         const fanficLock = document.getElementById('fanfic-lock');
         const worksList = document.getElementById('works-list');
 
-        // 根据分类调整显示状态
         if (category === '同人') {
             const isFanficAuth = sessionStorage.getItem('fanfic_authenticated') === 'true';
             if (isFanficAuth) {
@@ -122,12 +118,9 @@ function switchCategory(category) {
             filterAndSearch();
         }
 
-        // 4. 内容换好之后，让页面“翻回来”（平铺）
-        setTimeout(() => {
-            pages.classList.remove('flipping');
-        }, 50);
-
-    }, 300); // 300ms 对应 CSS 动画的一半时间
+        // 翻回来
+        if (pages) pages.classList.remove('flipping');
+    }, 300); // 300毫秒是动画的一半时间
 }
     
     // 更新导航栏高亮
