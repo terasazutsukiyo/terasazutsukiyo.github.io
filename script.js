@@ -1,8 +1,5 @@
 // ==========================================
-// 🔒 全站密码门禁系统
-// ==========================================
-const SITE_PASSWORD = "改成你想要的神秘暗号"; // 👈 这里改全站密码！
-const FANFIC_PASSWORD = "fanfic2026";          // 👈 这里改同人专属密码！
+const FANFIC_PASSWORD = "3528";          // 同人密码
 
 function checkSitePassword() {
     const input = document.getElementById('site-password-input');
@@ -21,10 +18,10 @@ function checkSitePassword() {
 // 📖 博客文章数据（按分类存放）
 // ==========================================
 const postsData = [
-    // 日志
-    { title: "第一篇日志", link: "works/log1.html", category: "日志", date: "2026-09-20", tags: ["日常"], summary: "今天搭建了博客，感觉非常有成就感..." },
+    // Blog
+    { title: "20260920", link: "works/log1.html", category: "日志", date: "2026-09-20", tags: ["网站"], summary: "搭建了博客框架" },
     // 随笔
-    { title: "深夜的杂念", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["思考"], summary: "晚上总是很容易产生一些奇怪的想法..." },
+    { title: "测试用", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["测试"], summary: "此篇用来测试网站" },
     // 同人
     { title: "命运的交错", link: "works/work1.html", category: "同人", cp: "A x B", type: "原著向", status: "已完结", date: "2026-09-19", tags: ["同人", "A x B"], summary: "这是一篇基于原作的同人小说..." }
 ];
