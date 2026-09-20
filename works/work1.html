@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>命运的交错 - 我的同人作品</title>
+    
+    <!-- 1. 引入字体 (放在最上面) -->
+    <link rel="preconnect" href="https://fonts.font.im">
+    <link href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 2. 引入你的专属样式表 (必须带 ../) -->
     <link rel="stylesheet" href="../style.css">
+    
+    <!-- 3. 防绕过密码的检查 -->
     <script>
         if (sessionStorage.getItem('site_authenticated') !== 'true') {
             window.location.href = '../index.html';
