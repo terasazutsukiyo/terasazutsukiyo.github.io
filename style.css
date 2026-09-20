@@ -189,3 +189,25 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
 .post-title:hover { color: #6b4c3a; }
 .post-date { font-size: 0.8em; color: #b0a8a0; margin-bottom: 10px; }
 .post-summary { font-size: 0.9em; color: #5c5853; line-height: 1.6; margin-bottom: 12px; text-indent: 0; }
+/* ==================== 3D 翻书容器 ==================== */
+.book-pages {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 0 8px 8px 8px; /* 左上角直角，其他圆角 */
+    box-shadow: 
+        -2px 0 5px rgba(0,0,0,0.02),   /* 左侧书脊阴影 */
+        5px 5px 20px rgba(107, 76, 58, 0.08), /* 整体立体阴影 */
+        1px 1px 0 #f9f7f2, 2px 2px 0 #f9f7f2, 3px 3px 0 #f9f7f2, /* 纸张层叠边缘 */
+        4px 4px 0 #ede6dc, 5px 5px 0 #ede6dc;
+    padding: 35px 30px;
+    margin-top: 10px;
+    transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.6s ease;
+    transform-origin: left center; /* 关键：以左侧书脊为轴心翻动 */
+    perspective: 1500px; /* 开启 3D 景深 */
+}
+
+/* 翻书时的中间状态（由 JS 触发，页面卷起半透明） */
+.book-pages.flipping {
+    transform: rotateY(-20deg) scale(0.98);
+    opacity: 0.3;
+}
