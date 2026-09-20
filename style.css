@@ -120,10 +120,7 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
 }
 .font-panel button:hover { background-color: #f0ebe4; }
 .font-panel button.active { background-color: #6b4c3a; color: #ffffff; border-color: #6b4c3a; }
-:root {
-    --reading-font-size: 1.05em;
-}
 .story-content {
-    font-size: var(--reading-font-size);
+    font-size: 1.05em;
     transition: font-size 0.3s ease;
 }
