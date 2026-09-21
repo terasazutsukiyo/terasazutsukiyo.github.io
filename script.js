@@ -136,7 +136,11 @@ function toggleTheme() {
 // ==========================================
 // 🚀 页面加载初始化
 // ==========================================
+// ==========================================
+// 🚀 页面加载初始化
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. 自动注入悬浮工具栏
     const toolbarHTML = `
         <div class="floating-font-tool">
             <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
@@ -149,10 +153,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>主题：</span>
-                    <button onclick="toggleTheme()" id="theme-btn">暗色</button>
+                    <button onclick="toggleTheme()" id="theme-btn">🌙 暗色</button>
                 </div>
             </div>
         </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', toolbarHTML);
+
+    // 2. 恢复字号和主题偏好
+    const savedSize = localStorage.getItem('reader-font-size');
+    if (savedSize) changeFontSize(savedSize);
+    
+    const savedTheme = localStorage.getItem('reader-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
+
+    // 3. 动态加载 Giscus（根据当前主题决定初始颜色）
+    const giscusContainer = document.getElementById('giscus-container');
+    if (giscusContainer) {
+        const giscusScript = document.createElement('script');
+        giscusScript.src = 'https://giscus.app/client.js';
+        giscusScript.setAttribute('data-repo', 'terasazutsukiyo/blog-comments');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ'); // 👈 替换你的 repo-id
+        giscusScript.setAttribute('data-category', '评论');
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp'); // 👈 替换你的 category-id
+        giscusScript.setAttribute('data-mapping', 'pathname');
+        giscusScript.setAttribute('data-strict', '1');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
+        // 关键！根据当前主题决定初始颜色
+        giscusScript.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'dark');
+        giscusScript.setAttribute('data-lang', 'zh-CN');
+        giscusScript.crossOrigin = 'anonymous';
+        giscusScript.async = true;
+        giscusContainer.appendChild(giscusScript);
+    }
+
+    // 4. 首次渲染首页
+    renderWorks(postsData.filter(p => p.category === 'Blog'));
+});
     `;
     document.body.insertAdjacentHTML('beforeend', toolbarHTML);
 
