@@ -1,4 +1,19 @@
 /* 引入思源宋体 */
+:root {
+    --bg-color: #f9f7f2;
+    --text-color: #3a3a3a;
+    --card-bg: #ffffff;
+    --border-color: #d1c3b4;
+    --accent-color: #6b4c3a;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;       /* 深灰底色，不刺眼 */
+    --text-color: #c9c5be;     /* 柔和米灰文字 */
+    --card-bg: #252525;        /* 卡片底色稍亮 */
+    --border-color: #4a3b31;   /* 暗铜色边框 */
+    --accent-color: #c9a47e;   /* 暗金强调色 */
+}
 @import url('https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
 
 /* 基础重置 */
