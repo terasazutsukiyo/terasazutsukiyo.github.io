@@ -415,3 +415,48 @@ body, h1, .nav-item, .book-pages, .work-item, .search-box input, .post-title {
 [data-theme="dark"] body { background-color: #151515; color: #c9c5be; }
 [data-theme="dark"] .book-pages, [data-theme="dark"] .work-item { background-color: #252525; border-color: #4a3b31; }
 [data-theme="dark"] .post-title { color: #e6e1d8; }
+/* ==================== 网站公告栏 ==================== */
+.notice-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+}
+.notice-overlay.active { opacity: 1; visibility: visible; }
+.notice-box {
+    background-color: var(--card-bg); color: var(--text-color);
+    width: 90%; max-width: 460px; padding: 30px;
+    border-radius: 6px; border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(20px); transition: all 0.3s ease;
+}
+.notice-overlay.active .notice-box { transform: translateY(0); }
+.notice-title {
+    font-size: 1.15em; font-weight: bold; color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px; margin-bottom: 15px;
+}
+.notice-content {
+    font-size: 0.95em; line-height: 1.8; margin-bottom: 20px;
+}
+.notice-btn {
+    padding: 8px 20px; background-color: var(--accent-color);
+    color: #ffffff; border: none; border-radius: 4px;
+    cursor: pointer; font-family: inherit; font-size: 0.9em; transition: opacity 0.3s;
+}
+.notice-btn:hover { opacity: 0.9; }
+
+/* 常驻查看公告按钮（在悬浮工具栏左侧） */
+.notice-view-btn {
+    position: fixed; bottom: 32px; right: 90px;
+    width: auto; padding: 0 15px; height: 38px;
+    border-radius: 19px; background-color: var(--card-bg);
+    color: var(--accent-color); border: 1px solid var(--border-color);
+    cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-size: 0.85em; font-family: inherit; transition: all 0.3s ease;
+    z-index: 1000;
+}
+.notice-view-btn:hover {
+    background-color: var(--accent-color); color: #ffffff;
+}
