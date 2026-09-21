@@ -128,11 +128,16 @@ function toggleTheme() {
     if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
 
     const iframe = document.querySelector('iframe.giscus-frame');
-    if (iframe) {
-        iframe.contentWindow.postMessage(
-            { giscus: { setConfig: { theme: newTheme === 'light' ? 'light' : 'transparent_dark' } } },
-            'https://giscus.app'
-        );
+        // 5. 通知 Giscus 切换（加延时，确保它在加载完成后收到）
+    setTimeout(() => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (iframe) {
+            iframe.contentWindow.postMessage(
+                { giscus: { setConfig: { theme: newTheme === 'light' ? 'light' : 'dark' } } },
+                'https://giscus.app'
+            );
+        }
+    }, 500); // 延迟0.5秒再发送暗号
     }
 }
 
