@@ -412,3 +412,6 @@ body, h1, .nav-item, .book-pages, .work-item, .search-box input, .post-title {
 
 [data-theme="dark"] .post-summary { color: #9a9a9a; }
 [data-theme="dark"] .work-item { box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+[data-theme="dark"] body { background-color: #151515; color: #c9c5be; }
+[data-theme="dark"] .book-pages, [data-theme="dark"] .work-item { background-color: #252525; border-color: #4a3b31; }
+[data-theme="dark"] .post-title { color: #e6e1d8; }
