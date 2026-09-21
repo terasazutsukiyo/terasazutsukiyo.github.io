@@ -259,19 +259,30 @@ function changeFontSize(size) {
     const targetBtn = document.getElementById('btn-' + size);
     if (targetBtn) targetBtn.classList.add('active');
 }
-
 // ==========================================
-// 🌙 黑夜模式切换
+// 🌙 暗夜模式切换（同步通知 Giscus 变色）
 // ==========================================
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     
+    // 1. 设置网页自身的主题
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('reader-theme', newTheme);
     
+    // 2. 更新悬浮按钮的图标
     const themeBtn = document.getElementById('theme-btn');
     if (themeBtn) {
         themeBtn.textContent = newTheme === 'light' ? '暗夜模式' : '亮色模式';
+    }
+
+    // 3. 通知 Giscus 切换主题
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (iframe) {
+        // 发送暗号给 Giscus，告诉它换成对应的暗色主题
+        iframe.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: newTheme === 'dark' ? 'noborder_dark' : 'noborder_light' } } },
+            'https://giscus.app'
+        );
     }
 }
