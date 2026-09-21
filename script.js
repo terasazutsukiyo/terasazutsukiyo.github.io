@@ -9,7 +9,7 @@ const postsData = [
 
 let currentCategory = 'Blog';
 let currentSort = 'date_desc';
-const FANFIC_PASSWORD = "fanfic2026"; // 👈 只有这里可以改成你的专属密码！
+const FANFIC_PASSWORD = "3528"; // 👈 只有这里可以改成你的专属密码！
 
 // ==========================================
 // 🎨 渲染与排序
