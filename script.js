@@ -121,6 +121,7 @@ function changeFontSize(size) {
 }
 
 function toggleTheme() {
+    console.log('点击生效', newTheme);
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     giscusScript.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'transparent_dark')
     document.documentElement.setAttribute('data-theme', newTheme);
