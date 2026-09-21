@@ -2,14 +2,14 @@
 // 📖 基础数据
 // ==========================================
 const postsData = [
-    { title: "第一篇日志", link: "works/log1.html", category: "Blog", date: "2026-09-20", tags: ["日常"], summary: "今天搭建了博客，感觉非常有成就感..." },
-    { title: "深夜的杂念", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["思考"], summary: "晚上总是很容易产生一些奇怪的想法..." },
+    { title: "网站日志", link: "works/log1.html", category: "Blog", date: "2026-09-20", tags: ["网站"], summary: "搭建博客框架，增加字号调节、黑夜模式、评论区功能" },
+    { title: "测试", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["测试"], summary: "测试随笔功能" },
     { title: "命运的交错", link: "works/work1.html", category: "同人", series: "某原作", cp: "A x B", type: "原著向", status: "已完结", date: "2026-09-19", popularity: 100, tags: ["同人"], summary: "这是一篇基于原作的同人小说..." }
 ];
 
 let currentCategory = 'Blog';
 let currentSort = 'date_desc';
-const FANFIC_PASSWORD = "fanfic2026"; // 👈 记得改密码！
+const FANFIC_PASSWORD = "3528"; // 👈 记得改密码！
 
 // ==========================================
 // 🎨 渲染与排序
@@ -98,7 +98,7 @@ function switchCategory(category) {
 }
 
 // ==========================================
-// 🔤 字号与夜间模式（这里只有一个 toggleTheme，不会再重复了）
+// 🔤 字号与夜间模式
 // ==========================================
 function toggleFontPanel() {
     const panel = document.getElementById('font-panel');
@@ -129,7 +129,7 @@ function toggleTheme() {
     localStorage.setItem('reader-theme', newTheme);
     
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
+    if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '黑夜模式' : '白天模式';
     notifyGiscusTheme(newTheme);
 }
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>主题：</span>
-                    <button onclick="toggleTheme()" id="theme-btn">🌙 暗色</button>
+                    <button onclick="toggleTheme()" id="theme-btn">暗色</button>
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         const themeBtn = document.getElementById('theme-btn');
-        if (themeBtn) themeBtn.textContent = '☀️ 亮色';
+        if (themeBtn) themeBtn.textContent = '亮色';
         setTimeout(() => notifyGiscusTheme('dark'), 1500);
     }
     renderWorks(postsData.filter(p => p.category === 'Blog'));
