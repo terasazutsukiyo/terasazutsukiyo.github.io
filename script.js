@@ -117,7 +117,7 @@ function changeFontSize(size) {
 function notifyGiscusTheme(theme) {
     const iframe = document.querySelector('iframe.giscus-frame');
     if (iframe) {
-        const giscusTheme = theme === 'dark' ? 'dark' : 'noborder_light';
+        const giscusTheme = theme === 'dark' ? 'dark' : 'light';
         iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: giscusTheme } } }, 'https://giscus.app');
     }
 }
