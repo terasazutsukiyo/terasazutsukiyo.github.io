@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>主题：</span>
-                    <button onclick="toggleTheme()" id="theme-btn">暗色</button>
+                    <button onclick="toggleTheme()" id="theme-btn">暗色模式</button>
                 </div>
             </div>
         </div>
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('reader-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '暗色' : '亮色';
+    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '暗色模式' : '亮色模式';
 
     const giscusContainer = document.getElementById('giscus-container');
     if (giscusContainer) {
