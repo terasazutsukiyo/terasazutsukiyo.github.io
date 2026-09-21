@@ -341,3 +341,52 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
     line-height: 1.5;
     opacity: 0.8;
 }
+/* ==========================================
+   黑夜模式
+   ========================================== */
+[data-theme="dark"] body {
+    background-color: #151515; /* 更深的夜底色 */
+    color: #c9c5be;           /* 柔和米灰色全局文字 */
+}
+
+/* 1. 修复标题和导航 */
+[data-theme="dark"] h1,
+[data-theme="dark"] .nav-item {
+    color: #e6e1d8; /* 亮色米白 */
+}
+
+[data-theme="dark"] .nav-item.active {
+    color: #c9a47e; /* 激活状态的暗金色 */
+    border-bottom-color: #c9a47e;
+}
+
+/* 2. 优化卡片和搜索框 */
+[data-theme="dark"] .book-pages,
+[data-theme="dark"] .work-item,
+[data-theme="dark"] .search-box input {
+    background-color: #252525; /* 深灰色卡片，取代纯白 */
+    border-color: #4a3b31;     /* 暗铜色边框 */
+    color: #c9c5be;            /* 卡片内文字颜色 */
+}
+
+/* 3. 优化卡片内的文字细节 */
+[data-theme="dark"] .post-title {
+    color: #e6e1d8;
+}
+[data-theme="dark"] .post-summary {
+    color: #9a9a9a;
+}
+[data-theme="dark"] .post-date,
+[data-theme="dark"] .disclaimer {
+    color: #7a7a7a;
+}
+
+/* 4. 优化空状态提示文字 */
+[data-theme="dark"] .work-list li {
+    color: #c9c5be;
+}
+
+/* 5. 保证切换时有顺滑的过渡动画 */
+body, h1, .nav-item, .book-pages, .work-item, .search-box input, .post-title {
+    transition: all 0.4s ease;
+}
