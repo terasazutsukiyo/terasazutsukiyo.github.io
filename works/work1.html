@@ -35,20 +35,28 @@
     </div
             <!-- 上下篇导航 -->
     <div style="display: flex; justify-content: space-between; margin-top: 50px; font-size: 0.9em; border-top: 1px dashed #ddd5c9; padding-top: 30px;">
-        <span style="color: #b0a8a0;">✨ 已经是第一篇了</span>
+        <span style="color: #b0a8a0;">已经是第一篇了</span>
         <span style="color: #b0a8a0;">暂无下一篇</span>
     </div>
 <!-- Giscus 评论区 -->
 <div class="giscus-container">
     <div class="giscus-title">评论区</div>
-        <!-- 悬浮字体调节工具 -->
+            <!-- 悬浮阅读工具（整合字号与主题） -->
     <div class="floating-font-tool">
         <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
         <div id="font-panel" class="font-panel" style="display: none;">
-            <span>字号：</span>
-            <button onclick="changeFontSize('small')" id="btn-small">小</button>
-            <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
-            <button onclick="changeFontSize('large')" id="btn-large">大</button>
+            <!-- 第一行：字号调节 -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+                <span>字号：</span>
+                <button onclick="changeFontSize('small')" id="btn-small">小</button>
+                <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
+                <button onclick="changeFontSize('large')" id="btn-large">大</button>
+            </div>
+            <!-- 第二行：黑夜模式切换 -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <span>主题：</span>
+                <button onclick="toggleTheme()" id="theme-btn">🌙 暗色</button>
+            </div>
         </div>
     </div>
    <script src="https://giscus.app/client.js"
