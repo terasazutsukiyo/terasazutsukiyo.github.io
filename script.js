@@ -125,6 +125,42 @@ function toggleTheme() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const toolbarHTML = `
+    // ==========================================
+    // 公告栏逻辑（修改这里更新公告）
+    // ==========================================
+    const NOTICE_VERSION = "2026-09-21"; // 👈 修改这里：每次发新公告，改一下日期，就会强制弹窗
+    const NOTICE_CONTENT = "<p>欢迎来到我的书房。本网站用于存放个人日志、随笔及同人作品。如需转载，请注明出处。</p>"; // 👈 修改这里：公告内容，可写多段
+
+    // 注入公告栏 HTML
+    const noticeHTML = `
+        <div class="notice-overlay" id="notice-overlay">
+            <div class="notice-box">
+                <div class="notice-title">网站公告</div>
+                <div class="notice-content">${NOTICE_CONTENT}</div>
+                <div style="text-align: right;">
+                    <button class="notice-btn" onclick="closeNotice()">我知道了</button>
+                </div>
+            </div>
+        </div>
+        <button class="notice-view-btn" onclick="openNotice()">查看公告</button>
+    `;
+    document.body.insertAdjacentHTML('beforeend', noticeHTML);
+
+    // 检查本地存储的公告版本，决定是否强制弹窗
+    const savedNoticeVersion = localStorage.getItem('notice_version');
+    if (savedNoticeVersion !== NOTICE_VERSION) {
+        document.getElementById('notice-overlay').classList.add('active');
+    }
+
+    // 将打开和关闭函数挂载到全局，方便 onclick 调用
+    window.closeNotice = function() {
+        document.getElementById('notice-overlay').classList.remove('active');
+        localStorage.setItem('notice_version', NOTICE_VERSION); // 记住你看过了
+    };
+
+    window.openNotice = function() {
+        document.getElementById('notice-overlay').classList.add('active'); // 主动打开
+    };
         <div class="floating-font-tool">
             <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
             <div id="font-panel" class="font-panel" style="display: none;">
@@ -136,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>主题：</span>
-                    <button onclick="toggleTheme()" id="theme-btn">暗色模式</button>
+                    <button onclick="toggleTheme()" id="theme-btn">暗色</button>
                 </div>
             </div>
         </div>
@@ -149,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('reader-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '暗色模式' : '亮色模式';
+    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '暗色' : '亮色';
 
     const giscusContainer = document.getElementById('giscus-container');
     if (giscusContainer) {
