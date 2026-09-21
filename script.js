@@ -1,5 +1,5 @@
 // ==========================================
-// 📖 文章数据
+// 文章数据
 // ==========================================
 const postsData = [
     { 
@@ -18,7 +18,7 @@ let currentCategory = 'Blog';
 const FANFIC_PASSWORD = "3528";
 
 // ==========================================
-// 🎨 渲染文章列表
+// 渲染文章列表
 // ==========================================
 function renderWorks(data) {
     const container = document.getElementById('works-list');
@@ -42,7 +42,7 @@ function renderWorks(data) {
 }
 
 // ==========================================
-// 🔄 切换版块逻辑
+// 切换版块逻辑
 // ==========================================
 function switchCategory(category) {
     const searchAndFilter = document.getElementById('search-and-filter');
@@ -77,7 +77,7 @@ function switchCategory(category) {
 }
 
 // ==========================================
-// 🔒 同人密码验证
+// 密码验证
 // ==========================================
 function checkFanficPassword() {
     const input = document.getElementById('fanfic-password-input');
@@ -91,13 +91,30 @@ function checkFanficPassword() {
 }
 
 // ==========================================
-// 🚀 页面加载初始化
+// 页面加载初始化
 // ==========================================
+// ==========================================
+// 🌙 黑夜模式切换
+// ==========================================
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    // 设置到 <html> 标签上，触发 CSS 变量切换
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('reader-theme', newTheme);
+    
+    // 更新按钮显示
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) {
+        themeBtn.textContent = newTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
     renderWorks(postsData.filter(p => p.category === 'Blog'));
 });
 // ==========================================
-// 📖 上下篇翻页功能
+// 上下篇翻页功能
 // ==========================================
 function renderPagination() {
     const container = document.getElementById('pagination-container');
@@ -178,10 +195,18 @@ function changeFontSize(size) {
     if (targetBtn) targetBtn.classList.add('active');
 }
 
-// 页面加载时恢复字号偏好
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. 恢复字号偏好
     const savedSize = localStorage.getItem('reader-font-size');
     if (savedSize) {
         changeFontSize(savedSize);
+    }
+
+    // 2. 恢复黑夜模式偏好
+    const savedTheme = localStorage.getItem('reader-theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        const themeBtn = document.getElementById('theme-btn');
+        if (themeBtn) themeBtn.textContent = '☀️ 亮色';
     }
 });
