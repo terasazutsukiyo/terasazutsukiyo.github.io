@@ -1,18 +1,18 @@
 // ==========================================
-// 📖 基础数据
+// 📖 文章数据
 // ==========================================
 const postsData = [
-    { title: "网站日志", link: "works/log1.html", category: "Blog", date: "2026-09-20", tags: ["网站"], summary: "搭建博客框架，增加字号调节、黑夜模式、评论区功能" },
-    { title: "测试", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["测试"], summary: "测试随笔功能" },
+    { title: "第一篇日志", link: "works/log1.html", category: "Blog", date: "2026-09-20", tags: ["日常"], summary: "今天搭建了博客，感觉非常有成就感..." },
+    { title: "深夜的杂念", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["思考"], summary: "晚上总是很容易产生一些奇怪的想法..." },
     { title: "命运的交错", link: "works/work1.html", category: "同人", series: "某原作", cp: "A x B", type: "原著向", status: "已完结", date: "2026-09-19", popularity: 100, tags: ["同人"], summary: "这是一篇基于原作的同人小说..." }
 ];
 
 let currentCategory = 'Blog';
 let currentSort = 'date_desc';
-const FANFIC_PASSWORD = "3528"; // 👈 记得改密码！
+const FANFIC_PASSWORD = "3528"; // 
 
 // ==========================================
-// 🎨 渲染与排序
+// 🎨 渲染与排序逻辑
 // ==========================================
 function renderWorks(data) {
     const container = document.getElementById('works-list');
@@ -114,14 +114,6 @@ function changeFontSize(size) {
     localStorage.setItem('reader-font-size', size);
 }
 
-function notifyGiscusTheme(theme) {
-    const iframe = document.querySelector('iframe.giscus-frame');
-    if (iframe) {
-        const giscusTheme = theme === 'dark' ? 'dark' : 'light';
-        iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: giscusTheme } } }, 'https://giscus.app');
-    }
-}
-
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -129,18 +121,22 @@ function toggleTheme() {
     localStorage.setItem('reader-theme', newTheme);
     
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '黑夜模式' : '白天模式';
-    notifyGiscusTheme(newTheme);
+    if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '暗色模式' : '亮色模式';
+
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (iframe) {
+        iframe.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: newTheme === 'light' ? 'light' : 'dark' } } },
+            'https://giscus.app'
+        );
+    }
 }
 
 // ==========================================
 // 🚀 页面加载初始化
 // ==========================================
-// ==========================================
-// 🚀 页面加载初始化
-// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 自动注入悬浮工具栏
+    // 1. 注入悬浮工具栏
     const toolbarHTML = `
         <div class="floating-font-tool">
             <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
@@ -153,32 +149,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>主题：</span>
-                    <button onclick="toggleTheme()" id="theme-btn">🌙 暗色</button>
+                    <button onclick="toggleTheme()" id="theme-btn">暗色</button>
                 </div>
             </div>
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', toolbarHTML);
 
-    // 2. 恢复字号和主题偏好
+    // 2. 恢复偏好
     const savedSize = localStorage.getItem('reader-font-size');
     if (savedSize) changeFontSize(savedSize);
-    
     const savedTheme = localStorage.getItem('reader-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
+    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '暗色模式' : '亮色模式';
 
-    // 3. 动态加载 Giscus（根据当前主题决定初始颜色）
+    // 3. 动态注入 Giscus（根据主题）
     const giscusContainer = document.getElementById('giscus-container');
     if (giscusContainer) {
         const giscusScript = document.createElement('script');
         giscusScript.src = 'https://giscus.app/client.js';
-                giscusScript.setAttribute('data-repo', 'terasazutsukiyo/blog-comments');
-        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ'); // 👈 你的 repo-id
+        giscusScript.setAttribute('data-repo', 'terasazutsukiyo/blog-comments');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ'); // 
         giscusScript.setAttribute('data-category', '评论');
-        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp'); // 👈 你的 category-id
-        // 关键！根据当前主题决定初始颜色
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp'); //
+        giscusScript.setAttribute('data-mapping', 'pathname')
+        giscusScript.setAttribute('data-strict', '1');
+        giscusScript.setAttribute('data-reactions-enabled', '1');
+        giscusScript.setAttribute('data-emit-metadata', '0');
+        giscusScript.setAttribute('data-input-position', 'bottom');
         giscusScript.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'dark');
         giscusScript.setAttribute('data-lang', 'zh-CN');
         giscusScript.crossOrigin = 'anonymous';
@@ -186,20 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
         giscusContainer.appendChild(giscusScript);
     }
 
-    // 4. 首次渲染首页
+    // 4. 首次渲染
     renderWorks(postsData.filter(p => p.category === 'Blog'));
-});
-    `;
-    document.body.insertAdjacentHTML('beforeend', toolbarHTML);
-
-    const savedSize = localStorage.getItem('reader-font-size');
-    if (savedSize) changeFontSize(savedSize);
-    const savedTheme = localStorage.getItem('reader-theme');
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        const themeBtn = document.getElementById('theme-btn');
-        if (themeBtn) themeBtn.textContent = '亮色';
-        setTimeout(() => notifyGiscusTheme('dark'), 1500);
-    }
-    renderWorks(postsData.filter(p => p.category === 'Blog'));
-});
+}); // 👈 检查这里！整个文件在第 206 行左右以这个反大括号结束！
