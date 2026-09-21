@@ -224,7 +224,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. 首次渲染首页
     renderWorks(postsData.filter(p => p.category === 'Blog'));
 });
-iframe.contentWindow.postMessage(
-    { giscus: { setConfig: { theme: 'dark' } } },
-    'https://giscus.app'
-);
