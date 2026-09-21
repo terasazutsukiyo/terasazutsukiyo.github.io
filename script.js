@@ -1,5 +1,5 @@
 // ==========================================
-// 文章数据
+// 📖 基础数据
 // ==========================================
 const postsData = [
     { title: "第一篇日志", link: "works/log1.html", category: "Blog", date: "2026-09-20", tags: ["日常"], summary: "今天搭建了博客，感觉非常有成就感..." },
@@ -9,10 +9,10 @@ const postsData = [
 
 let currentCategory = 'Blog';
 let currentSort = 'date_desc';
-const FANFIC_PASSWORD = "3528"; // 
+const FANFIC_PASSWORD = "fanfic2026"; // 👈 只有这里可以改成你的专属密码！
 
 // ==========================================
-// 渲染核心（分组与排序）
+// 🎨 渲染与排序
 // ==========================================
 function renderWorks(data) {
     const container = document.getElementById('works-list');
@@ -21,34 +21,7 @@ function renderWorks(data) {
         container.innerHTML = '<li style="text-align:center; color:#8b8b8b; padding: 20px; list-style:none;">这个版块还没有文章哦~</li>';
         return;
     }
-
-    if (currentCategory === '同人') {
-        const seriesList = [...new Set(data.map(p => p.series).filter(Boolean))];
-        let html = '';
-        seriesList.forEach(series => {
-            const seriesPosts = data.filter(p => p.series === series);
-            html += `<li style="list-style: none; margin-top: 30px;">`;
-            html += `<h3 style="color: var(--accent-color); border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">📚 ${series} <span style="font-size: 0.6em; color: #b0a8a0; font-weight: normal;">(${seriesPosts.length}篇)</span></h3>`;
-            html += `<ul style="list-style: none; padding: 0;">`;
-            sortPosts(seriesPosts).forEach(post => { html += renderPostItem(post); });
-            html += `</ul></li>`;
-        });
-        const ungrouped = data.filter(p => !p.series);
-        if (ungrouped.length > 0) {
-            html += `<li style="list-style: none; margin-top: 30px;">`;
-            html += `<h3 style="color: var(--accent-color); border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">📄 散篇</h3>`;
-            html += `<ul style="list-style: none; padding: 0;">`;
-            sortPosts(ungrouped).forEach(post => { html += renderPostItem(post); });
-            html += `</ul></li>`;
-        }
-        container.innerHTML = html;
-    } else {
-        container.innerHTML = sortPosts(data).map(post => renderPostItem(post)).join('');
-    }
-}
-
-function renderPostItem(post) {
-    return `
+    container.innerHTML = sortPosts(data).map(post => `
         <li class="work-item" style="margin-bottom: 15px; list-style: none;">
             <a href="${post.link}" class="post-title">${post.title}</a>
             <div class="post-date">${post.date}</div>
@@ -59,7 +32,7 @@ function renderPostItem(post) {
                 ${post.status ? `<span class="badge status-${post.status === '已完结' ? 'done' : 'ongoing'}">${post.status}</span>` : ''}
             </div>
         </li>
-    `;
+    `).join('');
 }
 
 function sortPosts(posts) {
@@ -81,7 +54,7 @@ function filterAndSearch() {
 }
 
 // ==========================================
-// 密码验证
+// 🔒 密码与版块切换
 // ==========================================
 function checkFanficPassword() {
     const input = document.getElementById('fanfic-password-input');
@@ -94,9 +67,6 @@ function checkFanficPassword() {
     }
 }
 
-// ==========================================
-// 切换版块
-// ==========================================
 function switchCategory(category) {
     const searchAndFilter = document.getElementById('search-and-filter');
     const fanficLock = document.getElementById('fanfic-lock');
@@ -105,7 +75,6 @@ function switchCategory(category) {
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     const navItem = document.querySelector(`.nav-item[onclick*="${category}"]`);
     if (navItem) navItem.classList.add('active');
-
     currentCategory = category;
 
     if (category === '同人') {
@@ -129,12 +98,11 @@ function switchCategory(category) {
 }
 
 // ==========================================
-// 字号调节 + 主题切换
+// 🔤 字号与夜间模式
 // ==========================================
 function toggleFontPanel() {
     const panel = document.getElementById('font-panel');
-    if (!panel) return;
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    if (panel) panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
 }
 
 function changeFontSize(size) {
@@ -144,9 +112,6 @@ function changeFontSize(size) {
     else if (size === 'medium') content.style.fontSize = '1.05em';
     else if (size === 'large') content.style.fontSize = '1.25em';
     localStorage.setItem('reader-font-size', size);
-    document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
-    const targetBtn = document.getElementById('btn-' + size);
-    if (targetBtn) targetBtn.classList.add('active');
 }
 
 function toggleTheme() {
@@ -154,26 +119,17 @@ function toggleTheme() {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('reader-theme', newTheme);
-    
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '暗色' : '亮色';
-
-    // 通知 Giscus 变色
-   iframe.contentWindow.postMessage(
-    { giscus: { setConfig: { theme: newTheme === 'dark' ? 'dark' : 'noborder_light' } } },
-    'https://giscus.app'
-);
-
-    }
+    if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
 }
 
 // ==========================================
-// 全站自动注入悬浮工具栏 + 初始化
+// 🚀 页面加载初始化
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 动态注入悬浮工具栏（所有页面自动带有）
+    // 自动注入悬浮工具栏
     const toolbarHTML = `
-        <div class="floating-font-tool" id="global-toolbar">
+        <div class="floating-font-tool">
             <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
             <div id="font-panel" class="font-panel" style="display: none;">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
@@ -184,43 +140,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>主题：</span>
-                    <button onclick="toggleTheme()" id="theme-btn">暗色</button>
+                    <button onclick="toggleTheme()" id="theme-btn">🌙 暗色</button>
                 </div>
             </div>
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', toolbarHTML);
 
-    // 2. 监听排序下拉框
-    const sortSelect = document.getElementById('sort-select');
-    if (sortSelect) {
-        sortSelect.addEventListener('change', (e) => {
-            currentSort = e.target.value;
-            filterAndSearch();
-        });
-    }
-
-    // 3. 恢复字号和主题偏好
+    // 恢复用户偏好
     const savedSize = localStorage.getItem('reader-font-size');
     if (savedSize) changeFontSize(savedSize);
-    
     const savedTheme = localStorage.getItem('reader-theme');
     if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         const themeBtn = document.getElementById('theme-btn');
-        if (themeBtn) themeBtn.textContent = '亮色';
-        // 尝试通知可能已存在的 Giscus
-        setTimeout(() => {
-            const iframe = document.querySelector('iframe.giscus-frame');
-            if (iframe) {
-                iframe.contentWindow.postMessage(
-                    { giscus: { setConfig: { theme: 'noborder_dark' } } },
-                    'https://giscus.app'
-                );
-            }
-        }, 2000); // 延迟2秒确保 iframe 加载完成
+        if (themeBtn) themeBtn.textContent = '☀️ 亮色';
     }
 
-    // 4. 首次渲染首页
+    // 首次渲染首页
     renderWorks(postsData.filter(p => p.category === 'Blog'));
 });
