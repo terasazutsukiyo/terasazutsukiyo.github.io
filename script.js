@@ -9,7 +9,7 @@ const postsData = [
 
 let currentCategory = 'Blog';
 let currentSort = 'date_desc';
-const FANFIC_PASSWORD = "3528"; // 👈 只有这里可以改成你的专属密码！
+const FANFIC_PASSWORD = "fanfic2026"; // 👈 记得改密码！
 
 // ==========================================
 // 🎨 渲染与排序
@@ -98,7 +98,7 @@ function switchCategory(category) {
 }
 
 // ==========================================
-// 🔤 字号与夜间模式
+// 🔤 字号与夜间模式（这里只有一个 toggleTheme，不会再重复了）
 // ==========================================
 function toggleFontPanel() {
     const panel = document.getElementById('font-panel');
@@ -114,20 +114,29 @@ function changeFontSize(size) {
     localStorage.setItem('reader-font-size', size);
 }
 
+function notifyGiscusTheme(theme) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (iframe) {
+        const giscusTheme = theme === 'dark' ? 'dark' : 'noborder_light';
+        iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: giscusTheme } } }, 'https://giscus.app');
+    }
+}
+
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('reader-theme', newTheme);
+    
     const themeBtn = document.getElementById('theme-btn');
     if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
+    notifyGiscusTheme(newTheme);
 }
 
 // ==========================================
 // 🚀 页面加载初始化
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // 自动注入悬浮工具栏
     const toolbarHTML = `
         <div class="floating-font-tool">
             <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
@@ -147,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.body.insertAdjacentHTML('beforeend', toolbarHTML);
 
-    // 恢复用户偏好
     const savedSize = localStorage.getItem('reader-font-size');
     if (savedSize) changeFontSize(savedSize);
     const savedTheme = localStorage.getItem('reader-theme');
@@ -155,8 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.setAttribute('data-theme', 'dark');
         const themeBtn = document.getElementById('theme-btn');
         if (themeBtn) themeBtn.textContent = '☀️ 亮色';
+        setTimeout(() => notifyGiscusTheme('dark'), 1500);
     }
-
-    // 首次渲染首页
     renderWorks(postsData.filter(p => p.category === 'Blog'));
 });
