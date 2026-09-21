@@ -116,7 +116,7 @@ function changeFontSize(size) {
 
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    giscusScript.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'transparent_dark')
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('reader-theme', newTheme);
     
@@ -126,9 +126,9 @@ function toggleTheme() {
     const iframe = document.querySelector('iframe.giscus-frame');
     if (iframe) {
         iframe.contentWindow.postMessage(
-            { giscus: { setConfig: { theme: newTheme === 'light' ? 'light' : 'dark' } } },
-            'https://giscus.app'
-        );
+    { giscus: { setConfig: { theme: newTheme === 'light' ? 'light' : 'transparent_dark' } } },
+    'https://giscus.app'
+);
     }
 }
 
