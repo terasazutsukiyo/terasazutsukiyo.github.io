@@ -174,15 +174,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (giscusContainer) {
         const giscusScript = document.createElement('script');
         giscusScript.src = 'https://giscus.app/client.js';
-        giscusScript.setAttribute('data-repo', 'terasazutsukiyo/blog-comments');
-        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ'); // 👈 替换你的 repo-id
+                giscusScript.setAttribute('data-repo', 'terasazutsukiyo/blog-comments');
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ'); // 👈 你的 repo-id
         giscusScript.setAttribute('data-category', '评论');
-        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp'); // 👈 替换你的 category-id
-        giscusScript.setAttribute('data-mapping', 'pathname');
-        giscusScript.setAttribute('data-strict', '1');
-        giscusScript.setAttribute('data-reactions-enabled', '1');
-        giscusScript.setAttribute('data-emit-metadata', '0');
-        giscusScript.setAttribute('data-input-position', 'bottom');
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp'); // 👈 你的 category-id
         // 关键！根据当前主题决定初始颜色
         giscusScript.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'dark');
         giscusScript.setAttribute('data-lang', 'zh-CN');
