@@ -195,14 +195,46 @@ function changeFontSize(size) {
     if (targetBtn) targetBtn.classList.add('active');
 }
 
+// ==========================================
+// 🚀 全局初始化（自动注入悬浮工具栏）
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 恢复字号偏好
+    // 1. 动态创建悬浮工具栏的 HTML 结构
+    const toolHTML = `
+        <div class="floating-font-tool">
+            <button id="font-toggle-btn">A</button>
+            <div id="font-panel" class="font-panel" style="display: none;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+                    <span>字号：</span>
+                    <button onclick="changeFontSize('small')" id="btn-small">小</button>
+                    <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
+                    <button onclick="changeFontSize('large')" id="btn-large">大</button>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <span>主题：</span>
+                    <button onclick="toggleTheme()" id="theme-btn">🌙 暗色</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', toolHTML);
+
+    // 2. 绑定悬浮按钮的点击展开/收起事件
+    const toggleBtn = document.getElementById('font-toggle-btn');
+    const panel = document.getElementById('font-panel');
+    if (toggleBtn && panel) {
+        toggleBtn.addEventListener('click', () => {
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        });
+    }
+
+    // 3. 恢复字号偏好
     const savedSize = localStorage.getItem('reader-font-size');
     if (savedSize) {
         changeFontSize(savedSize);
     }
 
-    // 2. 恢复黑夜模式偏好
+    // 4. 恢复黑夜模式偏好（并从本地存储读取状态）
     const savedTheme = localStorage.getItem('reader-theme');
     if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -210,3 +242,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (themeBtn) themeBtn.textContent = '☀️ 亮色';
     }
 });
+
+// ==========================================
+// 🔤 字号调节功能
+// ==========================================
+function changeFontSize(size) {
+    const content = document.querySelector('.story-content');
+    if (!content) return;
+
+    if (size === 'small') content.style.fontSize = '0.9em';
+    else if (size === 'medium') content.style.fontSize = '1.05em';
+    else if (size === 'large') content.style.fontSize = '1.25em';
+
+    localStorage.setItem('reader-font-size', size);
+    document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
+    const targetBtn = document.getElementById('btn-' + size);
+    if (targetBtn) targetBtn.classList.add('active');
+}
+
+// ==========================================
+// 🌙 黑夜模式切换
+// ==========================================
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('reader-theme', newTheme);
+    
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) {
+        themeBtn.textContent = newTheme === 'light' ? '暗夜模式' : '亮色模式';
+    }
+}
