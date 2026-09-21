@@ -265,3 +265,79 @@ p { margin-bottom: 1.4em; text-indent: 2em; font-size: 1.05em; text-align: justi
     cursor: not-allowed;
     font-style: italic;
 }
+/* ==========================================
+   📄 文章列表卡片样式（修复版，支持黑夜模式）
+   ========================================== */
+.work-item {
+    background-color: var(--card-bg);
+    padding: 25px 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(107, 76, 58, 0.04), 0 1px 3px rgba(0,0,0,0.02);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-bottom: 25px;
+    list-style: none; /* 去掉前面的圆点 */
+}
+
+/* 鼠标悬浮效果 */
+.work-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px rgba(107, 76, 58, 0.12);
+    border-color: var(--accent-color);
+}
+
+/* 文章标题 */
+.post-title {
+    font-size: 1.2em;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* 发布日期 */
+.post-date {
+    font-size: 0.8em;
+    color: #b0a8a0;
+    margin-bottom: 10px;
+}
+
+/* 文章摘要 */
+.post-summary {
+    font-size: 0.9em;
+    color: #5c5853;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    text-indent: 0;
+}
+
+/* 同人版块的标签（如 A x B, 已完结） */
+.meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.badge {
+    padding: 2px 8px;
+    background-color: #ede8e1;
+    color: #6b4c3a;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+.status-done { background-color: #e6f4ea; color: #1e8e3e; }
+.status-ongoing { background-color: #fef7e0; color: #b06000; }
+
+/* 页面底部声明 */
+.disclaimer {
+    font-size: 12px;
+    color: #b0a8a0;
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    line-height: 1.5;
+    opacity: 0.8;
+}
