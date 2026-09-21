@@ -24,8 +24,9 @@
 /* 全局设定：羊皮纸背景与思源宋体 */
 body {
     font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun", serif;
-    background: radial-gradient(circle at 50% 0%, #ffffff 0%, #f9f7f2 60%, #ede6dc 100%);
-    color: #3a3a3a;
+     background-color: var(--bg-color); 
+    color: var(--text-color);           
+    transition: background-color 0.4s ease, color 0.4s ease; 
     line-height: 1.9;
     padding: 40px 20px;
     max-width: 720px;
