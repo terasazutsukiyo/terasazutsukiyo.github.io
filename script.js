@@ -111,7 +111,13 @@ function changeFontSize(size) {
     if (size === 'small') content.style.fontSize = '0.9em';
     else if (size === 'medium') content.style.fontSize = '1.05em';
     else if (size === 'large') content.style.fontSize = '1.25em';
+    
     localStorage.setItem('reader-font-size', size);
+    
+    // 👇 新增：控制按钮高亮切换
+    document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
+    const targetBtn = document.getElementById('btn-' + size);
+    if (targetBtn) targetBtn.classList.add('active');
 }
 
 function toggleTheme() {
