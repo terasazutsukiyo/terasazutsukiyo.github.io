@@ -461,44 +461,117 @@ body, h1, .nav-item, .book-pages, .work-item, .search-box input, .post-title {
     background-color: var(--accent-color); color: #ffffff;
 }
 /* ==========================================
-   公告栏样式（自动适配亮/暗色）
+   /* ==========================================
+   📢 弹出式公告栏样式（完美适配暗黑模式）
    ========================================== */
-.announcement-box {
-    background-color: var(--card-bg); /* 跟随卡片底色（白天白，黑天灰） */
-    border: 1px dashed var(--accent-color); /* 虚线边框，像钉在墙上的纸条 */
-    border-radius: 8px;
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* 半透明黑色遮罩 */
+    backdrop-filter: blur(4px); /* 背景模糊，提升高级感 */
+    z-index: 2000; /* 保证浮在最上层 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 15px 20px;
-    margin-bottom: 30px; /* 与下方版块导航拉开距离 */
-    font-size: 0.9em;
-    color: var(--text-color); /* 跟随全局文字颜色 */
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-    position: relative;
-    transition: all 0.4s ease;
+    border-bottom: 1px solid var(--border-color);
 }
 
-/* 像一颗图钉一样的装饰 */
-.announcement-box::before {
-    content: "📌";
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.2em;
-}
-
-.announcement-title {
+.modal-title {
     font-weight: bold;
+    font-size: 1.1em;
     color: var(--accent-color);
-    margin-bottom: 8px;
 }
 
-.announcement-content {
-    line-height: 1.6;
-    text-indent: 0; /* 取消首行缩进 */
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--text-color);
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.6;
 }
 
-/* 黑夜模式下的阴影微调 */
-[data-theme="dark"] .announcement-box {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+.modal-body {
+    padding: 20px;
+    line-height: 1.8;
+    font-size: 0.95em;
+}
+
+.modal-body p {
+    margin-bottom: 10px;
+    text-indent: 0; /* 取消段落首行缩进，更适合弹窗阅读 */
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: right;
+}
+
+.modal-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.modal-btn:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+/* 悬浮的公告小按钮 */
+.floating-announcement-btn {
+    position: fixed;
+    bottom: 85px; /* 放在字体按钮的上方 */
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.floating-announcement-btn:hover {
+    transform: scale(1.1);
+}
+
+/* 弹窗动画 */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }

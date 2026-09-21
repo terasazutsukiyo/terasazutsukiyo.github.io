@@ -15,13 +15,7 @@
         <!-- 头像与标题 -->
         <img src="avatar.jpg" alt="头像" class="profile-img">
         <h1>TerasazuTsukiyo</h1>
-        <!-- 📢 公告栏 -->
-        <div class="announcement-box">
-            <div class="announcement-title">📢 公告栏</div>
-            <div class="announcement-content">
-                欢迎来到我的个人网站，现在只有基础框架，同人版块已加密，密码请见置顶，祝阅读愉快。
-            </div>
-        </div>
+                </div>
         <!-- 博客版块导航 -->
         <div class="category-nav">
             <span class="nav-item active" onclick="switchCategory('Blog')">Blog</span>
@@ -54,7 +48,51 @@
             本网站所有作品均为原创或二次创作，保留著作权，仅供个人欣赏交流，与版权方无关，严禁转载。
         </div>
     </div>
+    <!-- 📢 弹出式公告栏 (模态框) -->
+    <div id="announcement-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">📢 公告栏</span>
+                <button class="modal-close" onclick="closeAnnouncement()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>欢迎来到我的同人书房！</p>
+                <p>目前同人版块已加密，密码请私信获取。</p>
+                <p>祝阅读愉快！</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="closeAnnouncement()">我知道了</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- 📢 随时查看公告的悬浮小按钮（放在右下角工具栏旁边） -->
+    <div class="floating-announcement-btn" onclick="openAnnouncement()">📢</div>
+
+    <!-- 🧠 公告栏的专属控制逻辑（跟你的 script.js 完全分开，互不干扰！） -->
+    <script>
+        // 👇 【每次更新公告时，只需把 1.0 改成 1.1、1.2 即可让它重新弹出！】
+        const ANNOUNCEMENT_VERSION = "1.0"; 
+
+        function openAnnouncement() {
+            document.getElementById('announcement-modal').style.display = 'flex';
+        }
+
+        function closeAnnouncement() {
+            document.getElementById('announcement-modal').style.display = 'none';
+            // 把已读的版本号存入浏览器
+            localStorage.setItem('announcement_read', ANNOUNCEMENT_VERSION);
+        }
+
+        // 页面加载时自动检查
+        document.addEventListener('DOMContentLoaded', function() {
+            const readVersion = localStorage.getItem('announcement_read');
+            // 如果当前版本号与已读版本号不一致，延迟 1 秒后自动弹出
+            if (readVersion !== ANNOUNCEMENT_VERSION) {
+                setTimeout(openAnnouncement, 1000);
+            }
+        });
+    </script>
     <script src="script.js"></script>
         <!-- 悬浮阅读工具栏（直接放在这里，不用 JS 生成了） -->
     <div class="floating-font-tool">
