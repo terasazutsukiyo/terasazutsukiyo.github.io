@@ -1,5 +1,5 @@
 // ==========================================
-// 📖 文章数据
+// 📖 基础数据
 // ==========================================
 const postsData = [
     { title: "第一篇日志", link: "works/log1.html", category: "Blog", date: "2026-09-20", tags: ["日常"], summary: "今天搭建了博客，感觉非常有成就感..." },
@@ -9,10 +9,10 @@ const postsData = [
 
 let currentCategory = 'Blog';
 let currentSort = 'date_desc';
-const FANFIC_PASSWORD = "3528"; // 
+const FANFIC_PASSWORD = "3528"; // 👈 【修改1】改你的同人密码！
 
 // ==========================================
-// 🎨 渲染与排序逻辑
+// 🎨 渲染与排序
 // ==========================================
 function renderWorks(data) {
     const container = document.getElementById('works-list');
@@ -111,33 +111,22 @@ function changeFontSize(size) {
     if (size === 'small') content.style.fontSize = '0.9em';
     else if (size === 'medium') content.style.fontSize = '1.05em';
     else if (size === 'large') content.style.fontSize = '1.25em';
-    
     localStorage.setItem('reader-font-size', size);
     
-    // 👇 新增：控制按钮高亮切换
     document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById('btn-' + size);
     if (targetBtn) targetBtn.classList.add('active');
 }
 
 function toggleTheme() {
-    // 1. 获取当前主题
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    
-    // 2. 计算新主题（这里就是之前少掉的代码，确保有 const 声明！）
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    // 3. 应用到网页并保存到本地
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('reader-theme', newTheme);
     
-    // 4. 更新按钮文字
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) {
-        themeBtn.textContent = newTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
-    }
+    if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
 
-    // 5. 顺便通知 Giscus 评论区一起变暗
     const iframe = document.querySelector('iframe.giscus-frame');
     if (iframe) {
         iframe.contentWindow.postMessage(
@@ -146,14 +135,11 @@ function toggleTheme() {
         );
     }
 }
-    }
-}
 
 // ==========================================
 // 🚀 页面加载初始化
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 注入悬浮工具栏
     const toolbarHTML = `
         <div class="floating-font-tool">
             <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
@@ -166,42 +152,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>主题：</span>
-                    <button onclick="toggleTheme()" id="theme-btn">暗色</button>
+                    <button onclick="toggleTheme()" id="theme-btn">🌙 暗色</button>
                 </div>
             </div>
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', toolbarHTML);
 
-    // 2. 恢复偏好
     const savedSize = localStorage.getItem('reader-font-size');
     if (savedSize) changeFontSize(savedSize);
+    
     const savedTheme = localStorage.getItem('reader-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '暗色模式' : '亮色模式';
+    if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
 
-    // 3. 动态注入 Giscus（根据主题）
     const giscusContainer = document.getElementById('giscus-container');
     if (giscusContainer) {
         const giscusScript = document.createElement('script');
         giscusScript.src = 'https://giscus.app/client.js';
         giscusScript.setAttribute('data-repo', 'terasazutsukiyo/blog-comments');
-        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ'); // 
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ'); // 👈 【修改2】替换为你的 repo-id
         giscusScript.setAttribute('data-category', '评论');
-        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp'); //
-        giscusScript.setAttribute('data-mapping', 'pathname')
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp'); // 👈 【修改3】替换为你的 category-id
+        giscusScript.setAttribute('data-mapping', 'pathname');
         giscusScript.setAttribute('data-strict', '1');
         giscusScript.setAttribute('data-reactions-enabled', '1');
         giscusScript.setAttribute('data-emit-metadata', '0');
         giscusScript.setAttribute('data-input-position', 'bottom');
-        giscusScript.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'dark');
+        giscusScript.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'transparent_dark');
         giscusScript.setAttribute('data-lang', 'zh-CN');
         giscusScript.crossOrigin = 'anonymous';
         giscusScript.async = true;
         giscusContainer.appendChild(giscusScript);
     }
 
-    // 4. 首次渲染
     renderWorks(postsData.filter(p => p.category === 'Blog'));
-}); // 👈 检查这里！整个文件在第 206 行左右以这个反大括号结束！
+}); // 👈 确保文件最后一行是这个，不多不少！
