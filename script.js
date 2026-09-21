@@ -121,21 +121,31 @@ function changeFontSize(size) {
 }
 
 function toggleTheme() {
-    console.log('点击生效', newTheme);
+    // 1. 获取当前主题
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    giscusScript.setAttribute('data-theme', savedTheme === 'light' ? 'light' : 'transparent_dark')
+    
+    // 2. 计算新主题（这里就是之前少掉的代码，确保有 const 声明！）
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    // 3. 应用到网页并保存到本地
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('reader-theme', newTheme);
     
+    // 4. 更新按钮文字
     const themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '暗色模式' : '亮色模式';
+    if (themeBtn) {
+        themeBtn.textContent = newTheme === 'light' ? '🌙 暗色' : '☀️ 亮色';
+    }
 
+    // 5. 顺便通知 Giscus 评论区一起变暗
     const iframe = document.querySelector('iframe.giscus-frame');
     if (iframe) {
         iframe.contentWindow.postMessage(
-    { giscus: { setConfig: { theme: newTheme === 'light' ? 'light' : 'transparent_dark' } } },
-    'https://giscus.app'
-);
+            { giscus: { setConfig: { theme: newTheme === 'light' ? 'light' : 'transparent_dark' } } },
+            'https://giscus.app'
+        );
+    }
+}
     }
 }
 
