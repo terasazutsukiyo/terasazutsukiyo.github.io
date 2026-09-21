@@ -159,12 +159,11 @@ function toggleTheme() {
     if (themeBtn) themeBtn.textContent = newTheme === 'light' ? '暗色' : '亮色';
 
     // 通知 Giscus 变色
-    const iframe = document.querySelector('iframe.giscus-frame');
-    if (iframe) {
-        iframe.contentWindow.postMessage(
-            { giscus: { setConfig: { theme: newTheme === 'dark' ? 'noborder_dark' : 'noborder_light' } } },
-            'https://giscus.app'
-        );
+   iframe.contentWindow.postMessage(
+    { giscus: { setConfig: { theme: newTheme === 'dark' ? 'dark' : 'noborder_light' } } },
+    'https://giscus.app'
+);
+
     }
 }
 
@@ -225,3 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. 首次渲染首页
     renderWorks(postsData.filter(p => p.category === 'Blog'));
 });
+iframe.contentWindow.postMessage(
+    { giscus: { setConfig: { theme: 'dark' } } },
+    'https://giscus.app'
+);
