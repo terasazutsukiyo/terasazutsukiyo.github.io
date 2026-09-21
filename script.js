@@ -155,3 +155,33 @@ function renderPagination() {
 document.addEventListener('DOMContentLoaded', () => {
     renderPagination();
 });
+// ==========================================
+// 🔤 字号调节功能
+// ==========================================
+function toggleFontPanel() {
+    const panel = document.getElementById('font-panel');
+    if (!panel) return;
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function changeFontSize(size) {
+    const content = document.querySelector('.story-content');
+    if (!content) return;
+
+    if (size === 'small') content.style.fontSize = '0.9em';
+    else if (size === 'medium') content.style.fontSize = '1.05em';
+    else if (size === 'large') content.style.fontSize = '1.25em';
+
+    localStorage.setItem('reader-font-size', size);
+    document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
+    const targetBtn = document.getElementById('btn-' + size);
+    if (targetBtn) targetBtn.classList.add('active');
+}
+
+// 页面加载时恢复字号偏好
+document.addEventListener('DOMContentLoaded', () => {
+    const savedSize = localStorage.getItem('reader-font-size');
+    if (savedSize) {
+        changeFontSize(savedSize);
+    }
+});
