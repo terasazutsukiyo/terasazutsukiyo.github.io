@@ -127,7 +127,23 @@ function toggleTheme() {
         );
     }
 }
+// ==========================================
+// 全局公告弹窗逻辑
+// ==========================================
+const ANNOUNCEMENT_VERSION = "1.0"; //  以后每次更新公告，把这里改成 1.1、1.2 即可重新弹出
 
+function openAnnouncement() {
+    const modal = document.getElementById('announcement-modal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function closeAnnouncement() {
+    const modal = document.getElementById('announcement-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        localStorage.setItem('announcement_read', ANNOUNCEMENT_VERSION);
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
     const savedSize = localStorage.getItem('reader-font-size');
     if (savedSize) changeFontSize(savedSize);
@@ -156,6 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
         giscusScript.async = true;
         giscusContainer.appendChild(giscusScript);
     }
-
+    // 检查是否需要弹出公告
+    const readVersion = localStorage.getItem('announcement_read');
+    if (readVersion !== ANNOUNCEMENT_VERSION) {
+        setTimeout(openAnnouncement, 1500); // 延迟 1.5 秒自动弹出
+    }
     renderWorks(postsData.filter(p => p.category === 'Blog'));
 });
