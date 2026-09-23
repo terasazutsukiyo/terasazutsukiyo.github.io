@@ -66,54 +66,6 @@
         </div>
     </div>
 
-                <!-- 公告栏控制逻辑 -->
-    <script>
-        //  【每次更新公告时，只需把 1.0 改成 1.1、1.2 即可重新弹出】
-        const ANNOUNCEMENT_VERSION = "1.0"; 
-
-        function openAnnouncement() {
-            document.getElementById('announcement-modal').style.display = 'flex';
-        }
-
-        function closeAnnouncement() {
-            document.getElementById('announcement-modal').style.display = 'none';
-            // 把已读的版本号存入浏览器
-            localStorage.setItem('announcement_read', ANNOUNCEMENT_VERSION);
-        }
-
-        // 页面加载时自动检查
-        document.addEventListener('DOMContentLoaded', function() {
-            const readVersion = localStorage.getItem('announcement_read');
-            // 如果当前版本号与已读版本号不一致，延迟 1 秒后自动弹出
-            if (readVersion !== ANNOUNCEMENT_VERSION) {
-                setTimeout(openAnnouncement, 1000);
-            }
-        });
-    </script>
-    <!-- 折叠式侧边栏阅读工具 -->
-    <div class="sidebar-tool">
-        <div class="sidebar-panel" id="sidebar-panel" style="display: none;">
-            <div class="sidebar-header">阅读工具</div>
-            <div class="tool-item">
-                <span class="tool-label">字号</span>
-                <div class="tool-btn-group">
-                    <button onclick="changeFontSize('small')" id="btn-small">小</button>
-                    <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
-                    <button onclick="changeFontSize('large')" id="btn-large">大</button>
-                </div>
-            </div>
-            <div class="tool-item">
-                <span class="tool-label">主题</span>
-                <button onclick="toggleTheme()" id="theme-btn" class="tool-btn">暗色模式</button>
-            </div>
-               </div>
-        <div class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <path d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </div>
-    </div>
-       </div>
-</body>
+               </body>
 </html>
 <script src="script.js"></script>

@@ -1,13 +1,22 @@
+// ==========================================
+// 文章数据
+// ==========================================
 const postsData = [
     { title: "网站功能测试记录", link: "works/log1.html", category: "Blog", date: "2026-09-23", tags: ["网站"], summary: "添加网站功能" },
-    { title: "深夜的杂念", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["测试"], summary: "测试随笔板块功能" },
+    { title: "只是一个测试", link: "works/essay1.html", category: "随笔", date: "2026-09-18", tags: ["测试"], summary: "测试随笔板块功能" },
     { title: "命运的交错", link: "works/work1.html", category: "同人", series: "某原作", cp: "A x B", type: "原著向", status: "已完结", date: "2026-09-19", popularity: 100, tags: ["同人"], summary: "这是一篇基于原作的同人小说..." }
 ];
 
 let currentCategory = 'Blog';
 let currentSort = 'date_desc';
-const FANFIC_PASSWORD = "3528"; // 
+const FANFIC_PASSWORD = "3528"; // 你的同人密码
 
+// 公告版本号（只在 script.js 里声明一次，以后更新改成 1.1、1.2 即可）
+const ANNOUNCEMENT_VERSION = "1.0";
+
+// ==========================================
+// 🎨 渲染与排序
+// ==========================================
 function renderWorks(data) {
     const container = document.getElementById('works-list');
     if (!container) return;
@@ -47,6 +56,9 @@ function filterAndSearch() {
     renderWorks(filtered);
 }
 
+// ==========================================
+// 🔒 密码与版块切换
+// ==========================================
 function checkFanficPassword() {
     const input = document.getElementById('fanfic-password-input');
     if (input && input.value === FANFIC_PASSWORD) {
@@ -88,7 +100,9 @@ function switchCategory(category) {
     }
 }
 
-// 侧边栏展开/收起功能
+// ==========================================
+// 📚 侧边栏与阅读工具
+// ==========================================
 function toggleSidebar() {
     const panel = document.getElementById('sidebar-panel');
     if (panel) {
@@ -104,7 +118,6 @@ function changeFontSize(size) {
     else if (size === 'large') content.style.fontSize = '1.25em';
     localStorage.setItem('reader-font-size', size);
     
-    // 匹配侧边栏的按钮类名
     document.querySelectorAll('.tool-btn-group button').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById('btn-' + size);
     if (targetBtn) targetBtn.classList.add('active');
@@ -127,11 +140,10 @@ function toggleTheme() {
         );
     }
 }
-// ==========================================
-// 全局公告弹窗逻辑
-// ==========================================
-const ANNOUNCEMENT_VERSION = "1.0"; //  以后每次更新公告，把这里改成 1.1、1.2 即可重新弹出
 
+// ==========================================
+// 📢 公告弹窗功能
+// ==========================================
 function openAnnouncement() {
     const modal = document.getElementById('announcement-modal');
     if (modal) modal.style.display = 'flex';
@@ -144,15 +156,28 @@ function closeAnnouncement() {
         localStorage.setItem('announcement_read', ANNOUNCEMENT_VERSION);
     }
 }
+
+// ==========================================
+// 🚀 页面加载初始化
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. 恢复字号偏好
     const savedSize = localStorage.getItem('reader-font-size');
     if (savedSize) changeFontSize(savedSize);
     
+    // 2. 恢复主题偏好
     const savedTheme = localStorage.getItem('reader-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     const themeBtn = document.getElementById('theme-btn');
     if (themeBtn) themeBtn.textContent = savedTheme === 'light' ? '暗色模式' : '亮色模式';
 
+    // 3. 检查并弹出公告
+    const readVersion = localStorage.getItem('announcement_read');
+    if (readVersion !== ANNOUNCEMENT_VERSION) {
+        setTimeout(openAnnouncement, 1500);
+    }
+
+    // 4. 动态加载 Giscus 评论区
     const giscusContainer = document.getElementById('giscus-container');
     if (giscusContainer) {
         const giscusScript = document.createElement('script');
@@ -172,10 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         giscusScript.async = true;
         giscusContainer.appendChild(giscusScript);
     }
-    // 检查是否需要弹出公告
-    const readVersion = localStorage.getItem('announcement_read');
-    if (readVersion !== ANNOUNCEMENT_VERSION) {
-        setTimeout(openAnnouncement, 1500); // 延迟 1.5 秒自动弹出
-    }
+
+    // 5. 首次渲染首页
     renderWorks(postsData.filter(p => p.category === 'Blog'));
 });
