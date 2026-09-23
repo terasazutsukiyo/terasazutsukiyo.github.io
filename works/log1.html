@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一篇日志 - Blog板块测试</title>
+    <link rel="preconnect" href="https://fonts.font.im">
+    <link href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+
+    <h1 class="story-title">第一篇日志</h1>
+    <div style="text-align: center; color: #888; font-size: 0.9em; margin-bottom: 30px;">
+        发布于 2026-09-20 | 作者：TerasazuTsukiyo
+    </div>
+
+    <!-- 正文区域 -->
+    <div class="story-content">
+        <p>今天的博客搭建框架，测试Blog功能。</p>
+    </div>
+
+    <!-- 侧边栏阅读工具 -->
+    <div class="sidebar-tool">
+        <div class="sidebar-panel" id="sidebar-panel" style="display: none;">
+            <div class="sidebar-header">阅读工具</div>
+            <div class="tool-item">
+                <span class="tool-label">字号</span>
+                <div class="tool-btn-group">
+                    <button onclick="changeFontSize('small')" id="btn-small">小</button>
+                    <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
+                    <button onclick="changeFontSize('large')" id="btn-large">大</button>
+                </div>
+            </div>
+            <div class="tool-item">
+                <span class="tool-label">主题</span>
+                <button onclick="toggleTheme()" id="theme-btn" class="tool-btn">暗色</button>
+            </div>
+            <div class="tool-item">
+                <span class="tool-label">公告</span>
+                <button onclick="openAnnouncement()" class="tool-btn">查看</button>
+            </div>
+        </div>
+        <div class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 引入 JS -->
+    <script src="../script.js"></script>
+</body>
+</html>
