@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第一篇日志 - Blog板块测试</title>
+    <title>20260923功能测试及记录</title>
     <link rel="preconnect" href="https://fonts.font.im">
     <link href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 路径 -->
     <link rel="stylesheet" href="../style.css">
-    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
 
-    <h1 class="story-title">第一篇日志</h1>
+    <h1 class="story-title">Blog</h1>
     <div style="text-align: center; color: #888; font-size: 0.9em; margin-bottom: 30px;">
-        发布于 2026-09-20 | 作者：TerasazuTsukiyo
+        发布于 2026-09-23 | 作者：TerasazuTsukiyo
     </div>
 
-    <!-- 正文区域 -->
     <div class="story-content">
-        <p>今天的博客搭建框架，测试Blog功能。</p>
+        <p>好无聊。</p>
+     </div>
+
+    <!-- Giscus 评论区容器 -->
+    <div class="giscus-container" style="margin-top: 40px;">
+        <div class="giscus-title" style="color: var(--accent-color); font-weight: bold; margin-bottom: 20px;">评论区</div>
+        <div id="giscus-container"></div>
     </div>
 
-    <!-- 侧边栏阅读工具 -->
+    <!-- 侧边栏工具 -->
     <div class="sidebar-tool">
         <div class="sidebar-panel" id="sidebar-panel" style="display: none;">
             <div class="sidebar-header">阅读工具</div>
@@ -35,11 +40,7 @@
             </div>
             <div class="tool-item">
                 <span class="tool-label">主题</span>
-                <button onclick="toggleTheme()" id="theme-btn" class="tool-btn">暗色</button>
-            </div>
-            <div class="tool-item">
-                <span class="tool-label">公告</span>
-                <button onclick="openAnnouncement()" class="tool-btn">查看</button>
+                <button onclick="toggleTheme()" id="theme-btn" class="tool-btn">暗色模式</button>
             </div>
         </div>
         <div class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">
@@ -49,7 +50,17 @@
         </div>
     </div>
 
-    <!-- 引入 JS -->
+    <!-- 侧边栏专属控制逻辑 -->
+    <script>
+        function toggleSidebar() {
+            const panel = document.getElementById('sidebar-panel');
+            if (panel) {
+                panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+            }
+        }
+    </script>
+
+    <!-- 引入脚本 -->
     <script src="../script.js"></script>
 </body>
 </html>
