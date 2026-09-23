@@ -574,20 +574,21 @@ body, h1, .nav-item, .book-pages, .work-item, .search-box input, .post-title {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-/* ==========================================
-   📚 折叠式侧边栏阅读工具（修复定位）
+  /* ==========================================
+   📚 折叠式侧边栏阅读工具（美化版）
    ========================================== */
 .sidebar-tool {
-    position: fixed; /* 👈 关键：固定在屏幕右下角 */
+    position: fixed;
     bottom: 30px;
     right: 30px;
     z-index: 1000;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 15px;
+    gap: 12px;
 }
 
+/* 底部圆形菜单按钮 */
 .sidebar-toggle {
     width: 45px;
     height: 45px;
@@ -601,13 +602,81 @@ body, h1, .nav-item, .book-pages, .work-item, .search-box input, .post-title {
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
 }
-.sidebar-toggle:hover { transform: scale(1.08); }
+.sidebar-toggle:hover { transform: scale(1.1); }
 
+/* 弹出面板 */
 .sidebar-panel {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 18px;
-    min-width: 160px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 18px 20px;
+    min-width: 180px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+[data-theme="dark"] .sidebar-panel {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-header {
+    font-size: 0.85em;
+    color: #8b8b8b;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 1px;
+}
+
+/* 每一行工具 */
+.tool-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.tool-item:last-child { margin-bottom: 0; }
+
+.tool-label {
+    font-size: 0.85em;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* 按钮组（小 中 大） */
+.tool-btn-group {
+    display: flex;
+    gap: 4px;
+}
+
+/* 统一按钮样式 */
+.tool-btn-group button,
+.tool-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 4px 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85em;
+    transition: all 0.3s ease;
+}
+
+.tool-btn-group button:hover,
+.tool-btn:hover {
+    background: var(--bg-color);
+}
+
+/* 选中状态（当前字号） */
+.tool-btn-group button.active {
+    background: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+}
+
+/* 公告和主题按钮的宽度对齐 */
+.tool-btn {
+    min-width: 55px;
+    text-align: center;
 }
