@@ -88,9 +88,12 @@ function switchCategory(category) {
     }
 }
 
-function toggleFontPanel() {
-    const panel = document.getElementById('font-panel');
-    if (panel) panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+// 侧边栏展开/收起功能
+function toggleSidebar() {
+    const panel = document.getElementById('sidebar-panel');
+    if (panel) {
+        panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+    }
 }
 
 function changeFontSize(size) {
@@ -101,6 +104,7 @@ function changeFontSize(size) {
     else if (size === 'large') content.style.fontSize = '1.25em';
     localStorage.setItem('reader-font-size', size);
     
+    // 匹配侧边栏的按钮类名
     document.querySelectorAll('.tool-btn-group button').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById('btn-' + size);
     if (targetBtn) targetBtn.classList.add('active');
@@ -138,9 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const giscusScript = document.createElement('script');
         giscusScript.src = 'https://giscus.app/client.js';
         giscusScript.setAttribute('data-repo', 'terasazutsukiyo/blog-comments');
-        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ'); // 
+        giscusScript.setAttribute('data-repo-id', 'R_kgDOUiQinQ');
         giscusScript.setAttribute('data-category', '评论');
-        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp'); // 
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDOUiQinc4DGAHp');
         giscusScript.setAttribute('data-mapping', 'pathname');
         giscusScript.setAttribute('data-strict', '1');
         giscusScript.setAttribute('data-reactions-enabled', '1');
