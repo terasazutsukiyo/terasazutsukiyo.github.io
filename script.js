@@ -101,7 +101,7 @@ function changeFontSize(size) {
     else if (size === 'large') content.style.fontSize = '1.25em';
     localStorage.setItem('reader-font-size', size);
     
-    document.querySelectorAll('.font-panel button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tool-btn-group button').forEach(btn => btn.classList.remove('active'));
     const targetBtn = document.getElementById('btn-' + size);
     if (targetBtn) targetBtn.classList.add('active');
 }
