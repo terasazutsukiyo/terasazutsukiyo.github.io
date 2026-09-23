@@ -1,5 +1,5 @@
 const postsData = [
-    { title: "第一篇日志", link: "works/log1.html", category: "Blog", date: "2026-09-23", tags: ["网站"], ["功能"] ,["日志"]summary: "添加评论区、暗色模式、字号调节大小功能" },
+    { title: "第一篇日志", link: "works/log1.html", category: "Blog", date: "2026-09-23", tags: ["网站"]summary: "添加评论区、暗色模式、字号调节大小功能" },
     { title: "深夜的杂念", link: "works/essay1.html", category: "随笔", date: "2026-09-23", tags: ["测试"], summary: "测试随笔板块功能" },
     { title: "命运的交错", link: "works/work1.html", category: "同人", series: "某原作", cp: "A x B", type: "原著向", status: "已完结", date: "2026-09-19", popularity: 100, tags: ["同人"], summary: "这是一篇基于原作的同人小说..." }
 ];
