@@ -75,7 +75,51 @@
             </svg>
         </div>
     </div>
+    <!-- 📢 公告弹窗（必须有这个骨架才能点开公告） -->
+    <div id="announcement-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">站点公告</span>
+                <button class="modal-close" onclick="closeAnnouncement()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>欢迎来到我的同个人站点。</p>
+                <p>目前同人版块已加密，密码请私信获取。</p>
+                <p>祝阅读愉快。</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="closeAnnouncement()">我知道了</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- 📚 折叠式侧边栏阅读工具（必须有这个骨架，按钮才能全） -->
+    <div class="sidebar-tool">
+        <div class="sidebar-panel" id="sidebar-panel" style="display: none;">
+            <div class="sidebar-header">阅读工具</div>
+            <div class="tool-item">
+                <span class="tool-label">字号</span>
+                <div class="tool-btn-group">
+                    <button onclick="changeFontSize('small')" id="btn-small">小</button>
+                    <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
+                    <button onclick="changeFontSize('large')" id="btn-large">大</button>
+                </div>
+            </div>
+            <div class="tool-item">
+                <span class="tool-label">主题</span>
+                <button onclick="toggleTheme()" id="theme-btn" class="tool-btn">暗色模式</button>
+            </div>
+            <div class="tool-item">
+                <span class="tool-label">公告</span>
+                <button onclick="openAnnouncement()" class="tool-btn">查看</button>
+            </div>
+        </div>
+        <div class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </div>
+    </div>
     <!-- 引入 JS（注意：works 文件夹下的文件，路径必须带 ../） -->
     <script src="../script.js"></script>
 </body>
