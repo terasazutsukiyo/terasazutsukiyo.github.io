@@ -38,20 +38,45 @@
     <!-- 引入 JS -->
     <script src="../script.js"></script>
         <!-- 悬浮阅读工具栏（直接放在这里，不用 JS 生成了） -->
-    <div class="floating-font-tool">
-        <button id="font-toggle-btn" onclick="toggleFontPanel()">A</button>
-        <div id="font-panel" class="font-panel" style="display: none;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
-                <span>字号：</span>
-                <button onclick="changeFontSize('small')" id="btn-small">小</button>
-                <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
-                <button onclick="changeFontSize('large')" id="btn-large">大</button>
-            </div>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <span>主题：</span>
-                <button onclick="toggleTheme()" id="theme-btn">暗色模式</button>
-            </div>
         </div>
     </div>
+</body>
+</html>
+    <!-- Giscus 评论区容器 -->
+    <div class="giscus-container" style="margin-top: 40px;">
+        <div class="giscus-title" style="color: var(--accent-color); font-weight: bold; margin-bottom: 20px;">评论区</div>
+        <div id="giscus-container"></div>
+    </div>
+
+    <!-- 统一的折叠式侧边栏阅读工具 -->
+    <div class="sidebar-tool">
+        <div class="sidebar-panel" id="sidebar-panel" style="display: none;">
+            <div class="sidebar-header">阅读工具</div>
+            <div class="tool-item">
+                <span class="tool-label">字号</span>
+                <div class="tool-btn-group">
+                    <button onclick="changeFontSize('small')" id="btn-small">小</button>
+                    <button onclick="changeFontSize('medium')" id="btn-medium" class="active">中</button>
+                    <button onclick="changeFontSize('large')" id="btn-large">大</button>
+                </div>
+            </div>
+            <div class="tool-item">
+                <span class="tool-label">主题</span>
+                <button onclick="toggleTheme()" id="theme-btn" class="tool-btn">暗色模式</button>
+            </div>
+            <div class="tool-item">
+                <span class="tool-label">公告</span>
+                <button onclick="openAnnouncement()" class="tool-btn">查看</button>
+            </div>
+        </div>
+        <div class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 引入 JS（注意：works 文件夹下的文件，路径必须带 ../） -->
+    <script src="../script.js"></script>
 </body>
 </html>
