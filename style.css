@@ -679,4 +679,59 @@ body, h1, .nav-item, .book-pages, .work-item, .search-box input, .post-title {
 .tool-btn {
     min-width: 55px;
     text-align: center;
+
+/* ==========================================
+   📖 同人作品元数据信息卡
+   ========================================== */
+.fanfic-meta {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 40px;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.meta-row {
+    display: flex;
+    align-items: flex-start; /* 保证长文本顶端对齐 */
+    line-height: 1.6;
+}
+
+.meta-label {
+    width: 60px; /* 固定标签宽度，保证右对齐 */
+    color: var(--accent-color); /* 使用你现有的主题色（白天木棕，夜晚暗金） */
+    font-weight: bold;
+    flex-shrink: 0; /* 防止标签被挤压变形 */
+    text-align: right;
+    padding-right: 15px;
+    position: relative;
+}
+
+/* 标签后面的小冒号 */
+.meta-label::after {
+    content: "：";
+    position: absolute;
+    right: 8px;
+}
+
+.meta-value {
+    color: var(--text-color);
+    word-break: break-word;
+    opacity: 0.9;
+}
+
+/* 针对手机屏幕的优化 */
+@media (max-width: 600px) {
+    .meta-label {
+        width: 45px;
+        padding-right: 10px;
+    }
+    .meta-label::after {
+        right: 4px;
+    }
 }
