@@ -683,19 +683,49 @@ body, h1, .nav-item, .book-pages, .work-item, .search-box input, .post-title {
 /* ==========================================
    📖 同人作品元数据信息卡
    ========================================== */
+/* ==========================================
+   📖 同人作品元数据信息卡（深色框架版）
+   ========================================== */
 .fanfic-meta {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
+    /* 使用深灰色背景，营造明显的“UI组件”感 */
+    background-color: #2a2a2a; 
+    border-left: 4px solid #8b6b4a; /* 左侧一条木质色/暗金色的高亮线 */
+    border-radius: 6px;
+    padding: 20px 24px;
     margin-bottom: 40px;
     font-size: 0.9em;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* 加深阴影，让它“浮”在纸面上 */
 }
 
+.meta-row {
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.8;
+    border-bottom: 1px solid #3a3a3a; /* 每行之间用深色细线分隔 */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.meta-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.meta-label {
+    width: 75px;
+    color: #c9a47e; /* 标签统一使用复古暗金色 */
+    font-weight: bold;
+    flex-shrink: 0;
+    text-align: left; /* 左对齐更符合框架感 */
+    font-family: sans-serif; /* 标签用无衬线体，区别于正文的文学感 */
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+.meta-value {
+    color: #e0e0e0; /* 内容使用浅灰色，与深色背景形成对比 */
+    word-break: break-word;
+}
 .meta-row {
     display: flex;
     align-items: flex-start; /* 保证长文本顶端对齐 */
